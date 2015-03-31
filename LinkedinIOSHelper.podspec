@@ -1,6 +1,6 @@
 Pod::Spec.new do |s|
   s.name             = "LinkedinIOSHelper"
-  s.version          = "0.1.0"
+  s.version          = '1.0.0'
   s.summary          = "Library to easily fetch Member Information from LinkedIn API"
   s.description      = <<-DESC
                        Easy to use and not using any dependency. If you want to make Login with Linkedin, this library is absolutely for you.
@@ -12,8 +12,6 @@ Pod::Spec.new do |s|
   s.social_media_url = 'https://twitter.com/ahmtgny'
   s.platform     = :ios, '7.0'
   s.requires_arc = true
-  s.source_files = 'LinkedinIOSHelper/LinkedInHelper/LinkedInHelper.h'
-
-  s.public_header_files = 'LinkedinIOSHelper/**/*.h'
-  s.frameworks = 'UIKit', 'Foundation'
+  
+  s.source_files = ['LinkedinIOSHelper/LinkedInHelper/*.{h,m}', 'LinkedinIOSHelper/Constants/*.{h,m}']
 end
