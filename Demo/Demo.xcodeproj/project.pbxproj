@@ -163,6 +163,7 @@
 		72CD445E1AC97B5500B9FA61 /* Constants */ = {
 			isa = PBXGroup;
 			children = (
+				72CD44671AC97B5500B9FA61 /* LinkedInIOSFields.h */,
 				72CD445F1AC97B5500B9FA61 /* BasicProfileFields.h */,
 				72CD44601AC97B5500B9FA61 /* BasicProfileFields.m */,
 				72CD44611AC97B5500B9FA61 /* ContactInformationFields.h */,
@@ -171,7 +172,6 @@
 				72CD44641AC97B5500B9FA61 /* EmailFields.m */,
 				72CD44651AC97B5500B9FA61 /* FullProfileFields.h */,
 				72CD44661AC97B5500B9FA61 /* FullProfileFields.m */,
-				72CD44671AC97B5500B9FA61 /* LinkedInIOSFields.h */,
 				72CD44681AC97B5500B9FA61 /* NetworkFields.h */,
 				72CD44691AC97B5500B9FA61 /* NetworkFields.m */,
 			);
@@ -181,14 +181,14 @@
 		72CD446A1AC97B5500B9FA61 /* LinkedInHelper */ = {
 			isa = PBXGroup;
 			children = (
+				72CD44711AC97B5500B9FA61 /* LinkedInHelper.h */,
+				72CD44721AC97B5500B9FA61 /* LinkedInHelper.m */,
 				72CD446B1AC97B5500B9FA61 /* LinkedInAppSettings.h */,
 				72CD446C1AC97B5500B9FA61 /* LinkedInAppSettings.m */,
 				72CD446D1AC97B5500B9FA61 /* LinkedInAuthorizationViewController.h */,
 				72CD446E1AC97B5500B9FA61 /* LinkedInAuthorizationViewController.m */,
 				72CD446F1AC97B5500B9FA61 /* LinkedInConnectionHandler.h */,
 				72CD44701AC97B5500B9FA61 /* LinkedInConnectionHandler.m */,
-				72CD44711AC97B5500B9FA61 /* LinkedInHelper.h */,
-				72CD44721AC97B5500B9FA61 /* LinkedInHelper.m */,
 				72CD44731AC97B5500B9FA61 /* LinkedInServiceManager.h */,
 				72CD44741AC97B5500B9FA61 /* LinkedInServiceManager.m */,
 			);

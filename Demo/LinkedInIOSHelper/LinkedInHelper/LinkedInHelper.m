@@ -74,11 +74,6 @@ NSString * StringOrEmpty(NSString *string) {
     return string.length ? string : @"";
 }
 
-NSString * UrlEncodeValue(NSString *str) {
-    
-    return (NSString *)CFBridgingRelease(CFURLCreateStringByAddingPercentEscapes(kCFAllocatorDefault, (CFStringRef)str, NULL, CFSTR(":/?#[]@!$&’()*+,;="), kCFStringEncodingUTF8));;
-}
-
 #pragma mark - Initialize -
 
 + ( LinkedInHelper * )sharedInstance {
@@ -165,7 +160,7 @@ NSString * UrlEncodeValue(NSString *str) {
         _accessToken = self.service.accessToken;
         [self requestMeWithToken];
     } else {
-        NSLog(@"token must be valid to autologin !!!!");
+        NSLog(@"!!!! Token must be valid to autologin !!!!");
     }
 }
 

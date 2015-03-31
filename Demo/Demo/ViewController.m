@@ -21,15 +21,17 @@
 
 - (IBAction)btnConnectTapped:(UIButton *)sender {
     
+    LinkedInHelper *linkedIn = [LinkedInHelper sharedInstance];
+    
     // If user has already connected via linkedin in and access token is still valid then
     // No need to fetch authorizationCode and then accessToken again!
     
-    if ([LinkedInHelper sharedInstance].isValidToken) {
+    if (linkedIn.isValidToken) {
         
-        [LinkedInHelper sharedInstance].customSubPermissions = [NSString stringWithFormat:@"%@,%@", first_name, last_name];
+        linkedIn.customSubPermissions = [NSString stringWithFormat:@"%@,%@", first_name, last_name];
         
         // So Fetch member info by elderyly access token
-        [[LinkedInHelper sharedInstance] autoFetchUserInfoWithSuccess:^(NSDictionary *userInfo) {
+        [linkedIn autoFetchUserInfoWithSuccess:^(NSDictionary *userInfo) {
             // Whole User Info
             NSLog(@"user Info : %@", userInfo);
         } failUserInfo:^(NSError *error) {
@@ -37,7 +39,7 @@
         }];
     } else {
         
-        [LinkedInHelper sharedInstance].cancelButtonText = @"Kapat";
+        linkedIn.cancelButtonText = @"Kapat";
         
         NSArray *permissions = @[@(ContactInfo),
                                  @(FullProfile),
@@ -50,28 +52,28 @@
                                  @(Groups),
                                  @(Messages)];
         
-        [LinkedInHelper sharedInstance].showActivityIndicator = YES;
+        linkedIn.showActivityIndicator = YES;
         
-        [[LinkedInHelper sharedInstance] requestMeWithSenderViewController:self
-                                                                  clientId:<#ClientId#>
-                                                              clientSecret:<#ClientSecret#>
-                                                               redirectUrl:<#RedirectUrl#>
-                                                               permissions:permissions
-                                                           successUserInfo:^(NSDictionary *userInfo) {
-                                                               
-                                                               // Whole User Info
-                                                               NSLog(@"user Info : %@", userInfo);
-                                                               
-                                                               // You can also fetch user's those informations like below
-                                                               NSLog(@"job title : %@",     [LinkedInHelper sharedInstance].title);
-                                                               NSLog(@"company Name : %@",  [LinkedInHelper sharedInstance].companyName);
-                                                               NSLog(@"email address : %@", [LinkedInHelper sharedInstance].emailAddress);
-                                                               NSLog(@"Photo Url : %@",     [LinkedInHelper sharedInstance].photo);
-                                                               NSLog(@"Industry : %@",      [LinkedInHelper sharedInstance].industry);
-                                                           }
-                                                         failUserInfoBlock:^(NSError *error) {
-                                                             NSLog(@"error : %@", error.userInfo.description);
-                                                         }
+        [linkedIn requestMeWithSenderViewController:self
+                                           clientId:<#ClientId#>
+                                       clientSecret:<#ClientSecret#>
+                                        redirectUrl:<#RedirectUrl#>
+                                        permissions:permissions
+                                    successUserInfo:^(NSDictionary *userInfo) {
+                                        
+                                        // Whole User Info
+                                        NSLog(@"user Info : %@", userInfo);
+                                        
+                                        // You can also fetch user's those informations like below
+                                        NSLog(@"job title : %@",     [LinkedInHelper sharedInstance].title);
+                                        NSLog(@"company Name : %@",  [LinkedInHelper sharedInstance].companyName);
+                                        NSLog(@"email address : %@", [LinkedInHelper sharedInstance].emailAddress);
+                                        NSLog(@"Photo Url : %@",     [LinkedInHelper sharedInstance].photo);
+                                        NSLog(@"Industry : %@",      [LinkedInHelper sharedInstance].industry);
+                                    }
+                                  failUserInfoBlock:^(NSError *error) {
+                                      NSLog(@"error : %@", error.userInfo.description);
+                                  }
          ];
     }
 }
