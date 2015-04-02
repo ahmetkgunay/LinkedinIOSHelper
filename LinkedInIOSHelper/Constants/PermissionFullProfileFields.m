@@ -1,14 +1,14 @@
 //
-//  FullProfileFields.m
-//  linkedinDemo
+//  PermissionFullProfileFields.m
+//  Demo
 //
-//  Created by Ahmet Kazım Günay on 25/03/15.
-//  Copyright (c) 2015 ahmetkgunay. All rights reserved.
+//  Created by Ahmet Kazım Günay on 02/04/15.
+//  Copyright (c) 2015 Ahmet Kazım Günay. All rights reserved.
 //
 
-#import "FullProfileFields.h"
+#import "PermissionFullProfileFields.h"
 
-@implementation FullProfileFields
+@implementation PermissionFullProfileFields
 
 NSString * const last_modified_timestamp    = @"last-modified-timestamp";
 NSString * const proposal_comments          = @"proposal-comments";

@@ -1,9 +1,9 @@
 //
-//  BasicProfileFields.h
-//  linkedinDemo
+//  PermissionBasicProfileFields.h
+//  Demo
 //
-//  Created by Ahmet Kazım Günay on 25/03/15.
-//  Copyright (c) 2015 ahmetkgunay. All rights reserved.
+//  Created by Ahmet Kazım Günay on 02/04/15.
+//  Copyright (c) 2015 Ahmet Kazım Günay. All rights reserved.
 //
 
 #import <Foundation/Foundation.h>
@@ -13,7 +13,8 @@
 // You can have more comprehensive descriptions from https://developer.linkedin.com/docs/fields/basic-profile
 //
 
-@interface BasicProfileFields : NSObject
+
+@interface PermissionBasicProfileFields : NSObject
 
 /*!
  * @brief A unique identifying value for the member.
@@ -126,5 +127,6 @@ extern NSString * const api_standard_profile_request;
  * @brief The URL to the member's public profile on LinkedIn.
  */
 extern NSString * const public_profile_url;
+
 
 @end

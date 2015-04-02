@@ -1,9 +1,9 @@
 //
-//  ContactInformationFields.h
-//  linkedinDemo
+//  PermissionContactInfoFields.h
+//  Demo
 //
-//  Created by Ahmet Kazım Günay on 25/03/15.
-//  Copyright (c) 2015 ahmetkgunay. All rights reserved.
+//  Created by Ahmet Kazım Günay on 02/04/15.
+//  Copyright (c) 2015 Ahmet Kazım Günay. All rights reserved.
 //
 
 #import <Foundation/Foundation.h>
@@ -13,7 +13,7 @@
 // For More Informations https://developer.linkedin.com/docs/fields/contact
 //
 
-@interface ContactInformationFields : NSObject
+@interface PermissionContactInfoFields : NSObject
 
 /*!
  * @brief A collection of phone number objects.
