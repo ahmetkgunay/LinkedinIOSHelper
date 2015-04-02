@@ -107,6 +107,8 @@ pod "LinkedinIOSHelper"
 * Apply with LinkedIn
 * Manage Company Pages
 
+## Credits
+* Special thanks to [IOSLinkedInAPI](https://github.com/jeyben/IOSLinkedInAPI), this library helped me much about how to connect Linkedin Rest API. 
 
 ## Author
 
