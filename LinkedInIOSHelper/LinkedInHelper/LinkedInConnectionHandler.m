@@ -57,7 +57,7 @@
     self = [super init];
     if (self) {
         _type = type;
-        _url = [NSURL URLWithString:[[url absoluteString] stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding]];
+        _url = url;
         _successCallback = success;
         _failureCallback = failure;
         _cancelCallback = cancel;
