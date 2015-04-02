@@ -91,7 +91,7 @@ I tried to do my best in code by writing well documentation.
 
 ## Requirements
 
-This library requires a deployment target of iOS 7.0 or greater.
+This library requires a deployment target of iOS 6.0 or greater.
 
 ## Installation
 
