@@ -1,18 +1,19 @@
 //
-//  FullProfileFields.h
-//  linkedinDemo
+//  PermissionFullProfileFields.h
+//  Demo
 //
-//  Created by Ahmet Kazım Günay on 25/03/15.
-//  Copyright (c) 2015 ahmetkgunay. All rights reserved.
+//  Created by Ahmet Kazım Günay on 02/04/15.
+//  Copyright (c) 2015 Ahmet Kazım Günay. All rights reserved.
 //
 
-#import "BasicProfileFields.h"
+#import "PermissionBasicProfileFields.h"
+
 //
 // All of the descriptions copied from  Linkedin Developer Site
 // You can have more comprehensive descriptions from https://developer.linkedin.com/docs/fields/full-profile
 //
 
-@interface FullProfileFields : BasicProfileFields
+@interface PermissionFullProfileFields : PermissionBasicProfileFields
 
 /*!
  * @brief The timestamp, in milliseconds, when the member's profile was last edited.
@@ -133,6 +134,5 @@ extern NSString * const honors_awards;
  * @brief Members locations which is set to Linked profile
  */
 extern NSString * const location_name;
-
 
 @end

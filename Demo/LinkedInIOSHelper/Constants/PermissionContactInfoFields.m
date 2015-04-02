@@ -1,14 +1,14 @@
 //
-//  ContactInformationFields.m
-//  linkedinDemo
+//  PermissionContactInfoFields.m
+//  Demo
 //
-//  Created by Ahmet Kazım Günay on 25/03/15.
-//  Copyright (c) 2015 ahmetkgunay. All rights reserved.
+//  Created by Ahmet Kazım Günay on 02/04/15.
+//  Copyright (c) 2015 Ahmet Kazım Günay. All rights reserved.
 //
 
-#import "ContactInformationFields.h"
+#import "PermissionContactInfoFields.h"
 
-@implementation ContactInformationFields
+@implementation PermissionContactInfoFields
 
 NSString * const phone_numbers              = @"phone-numbers";
 NSString * const bound_account_types        = @"bound-account-types";

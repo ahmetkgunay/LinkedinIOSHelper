@@ -9,11 +9,11 @@
 #ifndef linkedinDemo_LinkedInIOSFields_h
 #define linkedinDemo_LinkedInIOSFields_h
 
-#import "BasicProfileFields.h"
-#import "FullProfileFields.h"
-#import "EmailFields.h"
-#import "ContactInformationFields.h"
-#import "NetworkFields.h"
+#import "PermissionBasicProfileFields.h"
+#import "PermissionFullProfileFields.h"
+#import "PermissionEmailFields.h"
+#import "PermissionContactInfoFields.h"
+#import "PermissionNetworkFields.h"
 
 /*!
  * @brief To access any of the following full profile fields, your app must request the FullProfile member permission.  Note that BasicProfile provides access to a sub-set of the fields made available by FullProfile, so if you are requesting FullProfile, there is no need to also request the BasicProfile permission.

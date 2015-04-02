@@ -1,14 +1,14 @@
 //
-//  BasicProfileFields.m
-//  linkedinDemo
+//  PermissionBasicProfileFields.m
+//  Demo
 //
-//  Created by Ahmet Kazım Günay on 25/03/15.
-//  Copyright (c) 2015 ahmetkgunay. All rights reserved.
+//  Created by Ahmet Kazım Günay on 02/04/15.
+//  Copyright (c) 2015 Ahmet Kazım Günay. All rights reserved.
 //
 
-#import "BasicProfileFields.h"
+#import "PermissionBasicProfileFields.h"
 
-@implementation BasicProfileFields
+@implementation PermissionBasicProfileFields
 
 NSString * const Id                             = @"id";
 NSString * const first_name                     = @"first-name";
