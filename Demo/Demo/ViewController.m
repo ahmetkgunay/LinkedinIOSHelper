@@ -39,7 +39,7 @@
         }];
     } else {
         
-        linkedIn.cancelButtonText = @"Kapat";
+        linkedIn.cancelButtonText = @"Close"; // Or any other language But Default is Close
         
         NSArray *permissions = @[@(ContactInfo),
                                  @(FullProfile),
