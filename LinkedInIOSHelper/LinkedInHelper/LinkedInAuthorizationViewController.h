@@ -19,7 +19,7 @@
 - (instancetype)initWithServiceManager:(LinkedInServiceManager *)manager;
 
 /*!
- * @brief Cancel Button's text while getting AuthorizationCode via webview
+ * @brief Cancel Button's text while getting AuthorizationCode via webview (default is Close)
  */
 @property (nonatomic, copy) NSString *cancelButtonText;
 

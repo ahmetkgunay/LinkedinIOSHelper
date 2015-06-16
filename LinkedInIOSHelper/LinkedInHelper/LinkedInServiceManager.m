@@ -44,25 +44,27 @@
                       cancel:(void (^)(void))cancel
                      failure:(void (^)(NSError *))failure {
     
+    __weak typeof (self) weakSelf = self;
+    
     LinkedInAuthorizationViewController *vc = [[LinkedInAuthorizationViewController alloc] initWithServiceManager:self];
     vc.showActivityIndicator = _showActivityIndicator;
     
     [vc setAuthorizationCodeCancelCallback:^{
-        [self hideAuthenticateView];
+        [weakSelf hideAuthenticateView];
         if (cancel) {
             cancel();
         }
     }];
     
     [vc setAuthorizationCodeFailureCallback:^(NSError *err) {
-        [self hideAuthenticateView];
+        [weakSelf hideAuthenticateView];
         if (failure) {
             failure(err);
         }
     }];
     
     [vc setAuthorizationCodeSuccessCallback:^(NSString *code) {
-        [self hideAuthenticateView];
+        [weakSelf hideAuthenticateView];
         if (success) {
             success(code);
         }
@@ -133,25 +135,27 @@
     
     NSString *postDataStr = [NSString stringWithFormat:@"grant_type=authorization_code""&code=%@""&redirect_uri=%@""&client_id=%@""&client_secret=%@", authorizationCode, _settings.applicationWithRedirectURL, _settings.clientId, _settings.clientSecret];
     
+    __weak typeof (self) weakSelf = self;
+    
     LinkedInConnectionHandler *handler = [[LinkedInConnectionHandler alloc] initWithURL:[NSURL URLWithString:@"https://www.linkedin.com/uas/oauth2/accessToken"]
                                                                                    type:POST
                                                                                postData:postDataStr
                                                                                 success:^(NSDictionary *response) {
-                                                                                    if (self.successBlock) {
-                                                                                        self.successBlock(response);
+                                                                                    if (weakSelf.successBlock) {
+                                                                                        weakSelf.successBlock(response);
                                                                                     }
                                                                                 }
                                                                                  cancel:^{
-                                                                                     if (self.failureBlock) {
+                                                                                     if (weakSelf.failureBlock) {
                                                                                          NSError *error = [NSError errorWithDomain:@"com.linkedinioshelper"
                                                                                                                             code:-2
                                                                                                                         userInfo:@{NSLocalizedDescriptionKey:@"Url connection canceled"}];
-                                                                                         self.failureBlock(error);
+                                                                                         weakSelf.failureBlock(error);
                                                                                      }
                                                                                  }
                                                                                 failure:^(NSError *err) {
-                                                                                    if (self.failureBlock) {
-                                                                                        self.failureBlock(err);
+                                                                                    if (weakSelf.failureBlock) {
+                                                                                        weakSelf.failureBlock(err);
                                                                                     }
                                                                                 }
                                           ];
