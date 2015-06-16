@@ -41,25 +41,19 @@
         
         linkedIn.cancelButtonText = @"Close"; // Or any other language But Default is Close
         
-        NSArray *permissions = @[@(ContactInfo),
-                                 @(FullProfile),
-                                 @(BasicProfile),
-                                 @(Nus),
-                                 @(Network),
+        NSArray *permissions = @[@(BasicProfile),
                                  @(EmailAddress),
                                  @(Share),
-                                 @(CompanyAdmin),
-                                 @(Groups),
-                                 @(Messages)];
+                                 @(CompanyAdmin)];
         
         linkedIn.showActivityIndicator = YES;
         
 #warning - Your LinkedIn App ClientId - ClientSecret - RedirectUrl
         
         [linkedIn requestMeWithSenderViewController:self
-                                           clientId:@""
-                                       clientSecret:@""
-                                        redirectUrl:@""
+                                           clientId:@"7889k77xz96q39"
+                                       clientSecret:@"5W5FfEqcP4ig7vFC"
+                                        redirectUrl:@"http://www.hurriyet.com.tr/anasayfa/"
                                         permissions:permissions
                                     successUserInfo:^(NSDictionary *userInfo) {
                                         

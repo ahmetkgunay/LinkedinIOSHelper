@@ -109,7 +109,7 @@ NSString * StringOrEmpty(NSString *string) {
     self.permissions = permissions;
     
     self.service = [LinkedInServiceManager serviceForPresentingViewController:_sender
-                                                             cancelButtonText:@"Kapat"
+                                                             cancelButtonText:self.cancelButtonText
                                                                   appSettings:[LinkedInAppSettings settingsWithClientSecret:_clientSecret
                                                                                                                    clientId:_clientId
                                                                                                                 redirectUrl:_applicationWithRedirectURL
@@ -122,28 +122,30 @@ NSString * StringOrEmpty(NSString *string) {
     _userInfoSuccessBlock = successUserInfo;
     _dismissFailBlock = failure;
     
+    __weak typeof(self) weakSelf = self;
+    
     [self.service getAuthorizationCode:^(NSString *code) {
         
         [self.service getAccessToken:code
                              success:^(NSDictionary *accessTokenData) {
-                                 self.accessToken = accessTokenData[@"access_token"];
-                                 [self requestMeWithToken];
+                                 weakSelf.accessToken = accessTokenData[@"access_token"];
+                                 [weakSelf requestMeWithToken];
                              }
                              failure:^(NSError *error) {
                                  // Quering accessToken failed
-                                 self.dismissFailBlock(error);
+                                 weakSelf.dismissFailBlock(error);
                              }
          ];
     }
                                 cancel:^{
                                     // Authorization was cancelled by user
-                                    self.dismissFailBlock([NSError errorWithDomain:@"com.linkedinioshelper"
+                                    weakSelf.dismissFailBlock([NSError errorWithDomain:@"com.linkedinioshelper"
                                                                               code:-5
                                                                           userInfo:@{NSLocalizedDescriptionKey:@"Authorization was cancelled by user" }]);
                                 }
                                failure:^(NSError *error) {
                                    // Authorization failed
-                                   self.dismissFailBlock(error);
+                                   weakSelf.dismissFailBlock(error);
                                }
      ];
 }
@@ -167,13 +169,15 @@ NSString * StringOrEmpty(NSString *string) {
 - (void)refreshAccessTokenWithSuccess:(void (^) (NSString *accessToken))success
                               failure:(void (^) (NSError *err) )failure {
     
+    __weak typeof(self) weakSelf = self;
+    
     [self.service getAccessToken:self.service.authorizationCode
                          success:^(NSDictionary *accessTokenData) {
-                             self.accessToken = accessTokenData[@"access_token"];
+                             weakSelf.accessToken = accessTokenData[@"access_token"];
                          }
                          failure:^(NSError *error) {
                              // Quering accessToken failed
-                             self.dismissFailBlock(error);
+                             weakSelf.dismissFailBlock(error);
                          }
      ];
     
@@ -195,6 +199,8 @@ NSString * StringOrEmpty(NSString *string) {
 - ( void )requestMeWithToken {
     
     NSString *clientUrl = [self prepareUrlForMe];
+    
+    __weak typeof(self) weakSelf = self;
     
     LinkedInConnectionHandler *connection = [[LinkedInConnectionHandler alloc] initWithURL:[NSURL URLWithString:clientUrl]
                                                                                       type:GET
@@ -221,15 +227,15 @@ NSString * StringOrEmpty(NSString *string) {
                                                                                            }
                                                                                        }
                                                                                        
-                                                                                       self.emailAddress  = emailAddress;
-                                                                                       self.industry      = industry;
-                                                                                       self.title         = StringOrEmpty(title);
-                                                                                       self.photo         = photo;
-                                                                                       self.companyName   = StringOrEmpty(companyName);
+                                                                                       weakSelf.emailAddress  = emailAddress;
+                                                                                       weakSelf.industry      = industry;
+                                                                                       weakSelf.title         = StringOrEmpty(title);
+                                                                                       weakSelf.photo         = photo;
+                                                                                       weakSelf.companyName   = StringOrEmpty(companyName);
                                                                                        
-                                                                                       NSAssert(self.userInfoSuccessBlock, @"SHOULD SET USER INFO SUCCESS BLOCK!");
-                                                                                       if (self.userInfoSuccessBlock) {
-                                                                                           self.userInfoSuccessBlock(response);
+                                                                                       NSAssert(weakSelf.userInfoSuccessBlock, @"SHOULD SET USER INFO SUCCESS BLOCK!");
+                                                                                       if (weakSelf.userInfoSuccessBlock) {
+                                                                                           weakSelf.userInfoSuccessBlock(response);
                                                                                        }
                                                                                        
                                                                                    }
@@ -238,9 +244,9 @@ NSString * StringOrEmpty(NSString *string) {
                                                                                     }
                                                                                    failure:^(NSError *err) {
                                                                                        
-                                                                                       NSAssert(self.dismissFailBlock, @"SHOULD SET USER INFO FAIL BLOCK!");
-                                                                                       if (self.dismissFailBlock) {
-                                                                                           self.dismissFailBlock(err);
+                                                                                       NSAssert(weakSelf.dismissFailBlock, @"SHOULD SET USER INFO FAIL BLOCK!");
+                                                                                       if (weakSelf.dismissFailBlock) {
+                                                                                           weakSelf.dismissFailBlock(err);
                                                                                        }
                                                                                    }
                                              ];
