@@ -19,35 +19,32 @@ If you want to login user with LinkedIn Api, so you can easily fetch your inform
 - (void)fetchUserInformations {        
 	
 	LinkedInHelper *linkedIn = [LinkedInHelper sharedInstance];
+
+    linkedIn.cancelButtonText = @"Close"; // Or any other language But Default is Close
 	
-	NSArray *permissions = @[@(ContactInfo),
-                             @(FullProfile),
-                             @(BasicProfile),
-                             @(Nus),
-                             @(Network),
-                             @(EmailAddress),
-                             @(Share),
-                             @(CompanyAdmin),
-                             @(Groups),
-                             @(Messages)];
+    NSArray *permissions = @[@(BasicProfile),
+                            @(EmailAddress),
+                            @(Share),
+                            @(CompanyAdmin)];
         
-        linkedIn.showActivityIndicator = YES;
+    linkedIn.showActivityIndicator = YES;
         
 #warning - Your LinkedIn App ClientId - ClientSecret - RedirectUrl
         
-        [linkedIn requestMeWithSenderViewController:self
-                                           clientId:@"" // Your App Client Id
-                                       clientSecret:@"" // Your App Client Secret
-                                        redirectUrl:@"" // Your App Redirect Url
-                                        permissions:permissions
-                                    successUserInfo:^(NSDictionary *userInfo) {
-                                        // Whole User Info
-                                        NSLog(@"user Info : %@", userInfo);
-                                    }
-                                  failUserInfoBlock:^(NSError *error) {
-                                      NSLog(@"error : %@", error.userInfo.description);
-                                  }
-         ];
+    [linkedIn requestMeWithSenderViewController:self
+                                       clientId:@""         // Your App Client Id
+                                   clientSecret:@""         // Your App Client Secret
+                                    redirectUrl:@""         // Your App Redirect Url
+                                    permissions:permissions
+                                          state:@""               // Your client state
+                                successUserInfo:^(NSDictionary *userInfo) {
+                                    // Whole User Info
+                                    NSLog(@"user Info : %@", userInfo);
+                                }
+                                failUserInfoBlock:^(NSError *error) {
+                                    NSLog(@"error : %@", error.userInfo.description);
+                                }
+    ];
 }
 
 @end
