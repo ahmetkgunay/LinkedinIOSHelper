@@ -100,6 +100,7 @@ NSString * StringOrEmpty(NSString *string) {
                              clientSecret:(NSString *)clientSecret
                               redirectUrl:(NSString *)redirectUrl
                               permissions:(NSArray *)permissions
+                                    state:(NSString *)state
                           successUserInfo:( void (^) (NSDictionary *userInfo) )successUserInfo
                         failUserInfoBlock:( void (^) (NSError *error))failure {
     
@@ -108,13 +109,14 @@ NSString * StringOrEmpty(NSString *string) {
     self.applicationWithRedirectURL = redirectUrl;
     self.permissions = permissions;
     
+    NSString *lclState = state.length ? state : @"DCEEFWF45453sdffef424";
     self.service = [LinkedInServiceManager serviceForPresentingViewController:_sender
                                                              cancelButtonText:self.cancelButtonText
                                                                   appSettings:[LinkedInAppSettings settingsWithClientSecret:_clientSecret
                                                                                                                    clientId:_clientId
                                                                                                                 redirectUrl:_applicationWithRedirectURL
                                                                                                                 permissions:_permissions
-                                                                                                                      state:@"DCEEFWF45453sdffef424"]];
+                                                                                                                      state:lclState]];
     
     self.service.showActivityIndicator = self.showActivityIndicator;
     

@@ -25,6 +25,7 @@
  * @param permissions the grantedaccesses to fetch from Linkedin Rest api
  * @param successUserInfo Returns successful user info which are requested via grantedAccess
  * @param failure Returns the failure statement of connection
+ * @param state defaults DCEEFWF45453sdffef424
  * @warning redirectUrl can not be nil!
  * @warning clientId can not be nil!
  * @warning clientSecret can not be nil!
@@ -34,6 +35,7 @@
                              clientSecret:(NSString *)clientSecret
                               redirectUrl:(NSString *)redirectUrl
                               permissions:(NSArray *)permissions
+                                    state:(NSString *)state
                           successUserInfo:( void (^) (NSDictionary *userInfo) )successUserInfo
                         failUserInfoBlock:( void (^) (NSError *error))failure;
 

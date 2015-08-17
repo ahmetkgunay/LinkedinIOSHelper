@@ -48,13 +48,14 @@
         
         linkedIn.showActivityIndicator = YES;
         
-#warning - Your LinkedIn App ClientId - ClientSecret - RedirectUrl
+#warning - Your LinkedIn App ClientId - ClientSecret - RedirectUrl - And state
         
         [linkedIn requestMeWithSenderViewController:self
-                                           clientId:@"7889k77xz96q39"
-                                       clientSecret:@"5W5FfEqcP4ig7vFC"
-                                        redirectUrl:@"http://www.hurriyet.com.tr/anasayfa/"
+                                           clientId:@""
+                                       clientSecret:@""
+                                        redirectUrl:@""
                                         permissions:permissions
+                                              state:@""
                                     successUserInfo:^(NSDictionary *userInfo) {
                                         
                                         // Whole User Info
