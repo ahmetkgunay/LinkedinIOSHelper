@@ -12,6 +12,7 @@
 		726430151ACD7F0E00532CA6 /* PermissionEmailFields.m in Sources */ = {isa = PBXBuildFile; fileRef = 726430141ACD7F0E00532CA6 /* PermissionEmailFields.m */; };
 		726430181ACD7F3200532CA6 /* PermissionNetworkFields.m in Sources */ = {isa = PBXBuildFile; fileRef = 726430171ACD7F3200532CA6 /* PermissionNetworkFields.m */; };
 		7264301B1ACD7F5900532CA6 /* PermissionContactInfoFields.m in Sources */ = {isa = PBXBuildFile; fileRef = 7264301A1ACD7F5900532CA6 /* PermissionContactInfoFields.m */; };
+		72AD87FD1B8387380044166A /* LinkedinSimpleKeychain.m in Sources */ = {isa = PBXBuildFile; fileRef = 72AD87FC1B8387380044166A /* LinkedinSimpleKeychain.m */; };
 		72C220CF1AC42E2800AAC81A /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 72C220CE1AC42E2800AAC81A /* main.m */; };
 		72C220D21AC42E2800AAC81A /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 72C220D11AC42E2800AAC81A /* AppDelegate.m */; };
 		72C220D51AC42E2800AAC81A /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 72C220D41AC42E2800AAC81A /* ViewController.m */; };
@@ -47,6 +48,8 @@
 		726430171ACD7F3200532CA6 /* PermissionNetworkFields.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PermissionNetworkFields.m; sourceTree = "<group>"; };
 		726430191ACD7F5900532CA6 /* PermissionContactInfoFields.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PermissionContactInfoFields.h; sourceTree = "<group>"; };
 		7264301A1ACD7F5900532CA6 /* PermissionContactInfoFields.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PermissionContactInfoFields.m; sourceTree = "<group>"; };
+		72AD87FB1B8387380044166A /* LinkedinSimpleKeychain.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LinkedinSimpleKeychain.h; sourceTree = "<group>"; };
+		72AD87FC1B8387380044166A /* LinkedinSimpleKeychain.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LinkedinSimpleKeychain.m; sourceTree = "<group>"; };
 		72C220C91AC42E2800AAC81A /* Demo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Demo.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		72C220CD1AC42E2800AAC81A /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		72C220CE1AC42E2800AAC81A /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
@@ -191,6 +194,8 @@
 				72CD44701AC97B5500B9FA61 /* LinkedInConnectionHandler.m */,
 				72CD44731AC97B5500B9FA61 /* LinkedInServiceManager.h */,
 				72CD44741AC97B5500B9FA61 /* LinkedInServiceManager.m */,
+				72AD87FB1B8387380044166A /* LinkedinSimpleKeychain.h */,
+				72AD87FC1B8387380044166A /* LinkedinSimpleKeychain.m */,
 			);
 			path = LinkedInHelper;
 			sourceTree = "<group>";
@@ -302,6 +307,7 @@
 				72C220D21AC42E2800AAC81A /* AppDelegate.m in Sources */,
 				72CD447A1AC97B5500B9FA61 /* LinkedInAppSettings.m in Sources */,
 				72CD447E1AC97B5500B9FA61 /* LinkedInServiceManager.m in Sources */,
+				72AD87FD1B8387380044166A /* LinkedinSimpleKeychain.m in Sources */,
 				72C220CF1AC42E2800AAC81A /* main.m in Sources */,
 				726430151ACD7F0E00532CA6 /* PermissionEmailFields.m in Sources */,
 				72CD447B1AC97B5500B9FA61 /* LinkedInAuthorizationViewController.m in Sources */,

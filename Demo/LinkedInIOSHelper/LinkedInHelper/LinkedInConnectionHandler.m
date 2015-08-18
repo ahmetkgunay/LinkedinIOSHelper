@@ -236,7 +236,6 @@
     [challenge.sender continueWithoutCredentialForAuthenticationChallenge:challenge];
 }
 
-
 #pragma mark - Memory Management -
 
 - (void) dealloc {

@@ -10,6 +10,7 @@
 #import "LinkedInServiceManager.h"
 #import "LinkedInIOSFields.h"
 #import "LinkedInConnectionHandler.h"
+#import "LinkedinSimpleKeychain.h"
 
 @interface LinkedInHelper ()
 
@@ -173,7 +174,9 @@ NSString * StringOrEmpty(NSString *string) {
     
     __weak typeof(self) weakSelf = self;
     
-    [self.service getAccessToken:self.service.authorizationCode
+    NSString *authCode = self.service.authorizationCode.length ? self.service.authorizationCode : [LinkedinSimpleKeychain loadWithService:LINKEDIN_AUTHORIZATION_CODE];
+    
+    [self.service getAccessToken:authCode
                          success:^(NSDictionary *accessTokenData) {
                              weakSelf.accessToken = accessTokenData[@"access_token"];
                          }

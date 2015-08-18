@@ -10,6 +10,7 @@
 #import "LinkedInServiceManager.h"
 #import "LinkedInAuthorizationViewController.h"
 #import "LinkedInConnectionHandler.h"
+#import "LinkedinSimpleKeychain.h"
 
 @interface LinkedInServiceManager ()
 
@@ -84,7 +85,7 @@
 }
 
 - (NSString *)authorizationCode {
-    return [[NSUserDefaults standardUserDefaults] objectForKey:LINKEDIN_AUTHORIZATION_CODE];
+    return [LinkedinSimpleKeychain loadWithService:LINKEDIN_AUTHORIZATION_CODE];
 }
 
 - (void)hideAuthenticateView {
@@ -94,12 +95,13 @@
 #pragma mark - Access Token -
 
 - (NSString *)accessToken {
-    return [[NSUserDefaults standardUserDefaults] objectForKey:LINKEDIN_TOKEN_KEY];
+    return [LinkedinSimpleKeychain loadWithService:LINKEDIN_TOKEN_KEY];
 }
 
 - (BOOL)validToken {
-    return !([[NSDate date] timeIntervalSince1970] >= ([[NSUserDefaults standardUserDefaults] doubleForKey:LINKEDIN_CREATION_KEY] +
-                                                       [[NSUserDefaults standardUserDefaults] doubleForKey:LINKEDIN_EXPIRATION_KEY]));
+    
+    return !([[NSDate date] timeIntervalSince1970] >= ([[LinkedinSimpleKeychain loadWithService:LINKEDIN_CREATION_KEY] doubleValue] +
+                                                       [[LinkedinSimpleKeychain loadWithService:LINKEDIN_EXPIRATION_KEY] doubleValue]));
 }
 
 - (void)getAccessToken:(NSString *)authorizationCode
@@ -120,11 +122,10 @@
         NSTimeInterval expiration = [[dict objectForKey:@"expires_in"] doubleValue];
         
         // store credentials
-        [[NSUserDefaults standardUserDefaults] setObject:accessToken forKey:LINKEDIN_TOKEN_KEY];
-        [[NSUserDefaults standardUserDefaults] setObject:authorizationCode forKey:LINKEDIN_AUTHORIZATION_CODE];
-        [[NSUserDefaults standardUserDefaults] setDouble:expiration forKey:LINKEDIN_EXPIRATION_KEY];
-        [[NSUserDefaults standardUserDefaults] setDouble:[[NSDate date] timeIntervalSince1970] forKey:LINKEDIN_CREATION_KEY];
-        [[NSUserDefaults standardUserDefaults] synchronize];
+        [LinkedinSimpleKeychain saveWithService:LINKEDIN_TOKEN_KEY data:accessToken];
+        [LinkedinSimpleKeychain saveWithService:LINKEDIN_AUTHORIZATION_CODE data:authorizationCode];
+        [LinkedinSimpleKeychain saveWithService:LINKEDIN_EXPIRATION_KEY data:@(expiration)];
+        [LinkedinSimpleKeychain saveWithService:LINKEDIN_CREATION_KEY data:@([[NSDate date] timeIntervalSince1970])];
         
         success(dict);
     }];
