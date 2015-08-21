@@ -99,7 +99,7 @@
                                     }
                                   failUserInfoBlock:^(NSError *error) {
                                       NSLog(@"error : %@", error.userInfo.description);
-                                      self.btnLogout.hidden = !linkedIn.isValidToken;
+                                      self.btnLogout.hidden = !linkedIn.isValidToken; 
                                   }
          ];
     }
