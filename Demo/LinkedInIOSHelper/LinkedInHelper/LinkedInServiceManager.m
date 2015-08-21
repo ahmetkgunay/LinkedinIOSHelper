@@ -133,7 +133,7 @@
     [self setFailureBlock:^(NSError *err) {
         failure(err);
     }];
-    
+
     NSString *postDataStr = [NSString stringWithFormat:@"grant_type=authorization_code""&code=%@""&redirect_uri=%@""&client_id=%@""&client_secret=%@", authorizationCode, _settings.applicationWithRedirectURL, _settings.clientId, _settings.clientSecret];
     
     __weak typeof (self) weakSelf = self;

@@ -52,7 +52,12 @@
  * @param success Returns accessToken
  * @param failure Returns the failure statement of connection
  */
-- (void)refreshAccessTokenWithSuccess:(void (^) (NSString *accessToken))success
+- (void)refreshAccessTokenWithClientId:(NSString *)clientId
+                          clientSecret:(NSString *)clientSecret
+                           redirectUrl:(NSString *)redirectUrl
+                           permissions:(NSArray *)permissions
+                                 state:(NSString *)state
+                               success:(void (^) (NSString *accessToken))success
                               failure:(void (^) (NSError *err) )failure;
 
 /*!
@@ -108,7 +113,11 @@
 /*!
  * @brief Access Token comes from Linkedin
  */
-@property (nonatomic, copy, readonly) NSString *accessToken;
+- (NSString *)accessToken;
 
+/*!
+ * @brief Removes All token and authorization data from keychain
+ */
+- (void)logout;
 
 @end

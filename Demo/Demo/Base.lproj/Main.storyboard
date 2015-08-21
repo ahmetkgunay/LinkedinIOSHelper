@@ -1,7 +1,8 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6254" systemVersion="14C109" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="vXZ-lx-hvc">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="7706" systemVersion="14E46" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="vXZ-lx-hvc">
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6247"/>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="7703"/>
     </dependencies>
     <scenes>
         <!--View Controller-->
@@ -17,7 +18,7 @@
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="QtX-Ca-pbn">
-                                <rect key="frame" x="228" y="258" width="145" height="30"/>
+                                <rect key="frame" x="228" y="249" width="145" height="30"/>
                                 <state key="normal" title="Connect Via Linkedin">
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
@@ -25,13 +26,31 @@
                                     <action selector="btnConnectTapped:" destination="vXZ-lx-hvc" eventType="touchUpInside" id="QSF-u0-ELi"/>
                                 </connections>
                             </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Uzk-ya-by8">
+                                <rect key="frame" x="231" y="317" width="138" height="40"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="138" id="e1C-hU-xDv"/>
+                                    <constraint firstAttribute="height" constant="40" id="wUi-Cz-wHp"/>
+                                </constraints>
+                                <state key="normal" title="Logout">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="logoutTapped:" destination="vXZ-lx-hvc" eventType="touchUpInside" id="d8P-d9-G4I"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstAttribute="centerX" secondItem="QtX-Ca-pbn" secondAttribute="centerX" id="9yf-AT-Sg8"/>
-                            <constraint firstAttribute="centerY" secondItem="QtX-Ca-pbn" secondAttribute="centerY" constant="27" id="kwC-37-cpp"/>
+                            <constraint firstItem="Uzk-ya-by8" firstAttribute="top" secondItem="QtX-Ca-pbn" secondAttribute="bottom" constant="38" id="HfD-iX-oAX"/>
+                            <constraint firstAttribute="centerX" secondItem="Uzk-ya-by8" secondAttribute="centerX" id="exp-bH-euS"/>
+                            <constraint firstAttribute="centerY" secondItem="QtX-Ca-pbn" secondAttribute="centerY" constant="36" id="kwC-37-cpp"/>
                         </constraints>
                     </view>
+                    <connections>
+                        <outlet property="btnLogout" destination="Uzk-ya-by8" id="pZc-LD-fib"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="x5A-6p-PRh" sceneMemberID="firstResponder"/>
             </objects>

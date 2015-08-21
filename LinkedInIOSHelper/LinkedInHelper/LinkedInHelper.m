@@ -94,6 +94,10 @@ NSString * StringOrEmpty(NSString *string) {
     return [self.service validToken];
 }
 
+- (NSString *)accessToken {
+    return self.service.accessToken;
+}
+
 #pragma mark - Connect -
 
 - (void)requestMeWithSenderViewController:(id)sender
@@ -131,7 +135,6 @@ NSString * StringOrEmpty(NSString *string) {
         
         [self.service getAccessToken:code
                              success:^(NSDictionary *accessTokenData) {
-                                 weakSelf.accessToken = accessTokenData[@"access_token"];
                                  [weakSelf requestMeWithToken];
                              }
                              failure:^(NSError *error) {
@@ -169,23 +172,53 @@ NSString * StringOrEmpty(NSString *string) {
     }
 }
 
-- (void)refreshAccessTokenWithSuccess:(void (^) (NSString *accessToken))success
+- (void)refreshAccessTokenWithClientId:(NSString *)clientId
+                          clientSecret:(NSString *)clientSecret
+                           redirectUrl:(NSString *)redirectUrl
+                           permissions:(NSArray *)permissions
+                                 state:(NSString *)state
+                               success:(void (^) (NSString *accessToken))success
                               failure:(void (^) (NSError *err) )failure {
+    
+    
+    self.clientId = clientId;
+    self.clientSecret = clientSecret;
+    self.applicationWithRedirectURL = redirectUrl;
+    self.permissions = permissions;
+    
+    NSString *lclState = state.length ? state : @"DCEEFWF45453sdffef424";
+    self.service = [LinkedInServiceManager serviceForPresentingViewController:_sender
+                                                             cancelButtonText:self.cancelButtonText
+                                                                  appSettings:[LinkedInAppSettings settingsWithClientSecret:_clientSecret
+                                                                                                                   clientId:_clientId
+                                                                                                                redirectUrl:_applicationWithRedirectURL
+                                                                                                                permissions:_permissions
+                                                                                                                      state:lclState]];
+    
+    self.service.showActivityIndicator = self.showActivityIndicator;
     
     __weak typeof(self) weakSelf = self;
     
     NSString *authCode = self.service.authorizationCode.length ? self.service.authorizationCode : [LinkedinSimpleKeychain loadWithService:LINKEDIN_AUTHORIZATION_CODE];
-    
+
     [self.service getAccessToken:authCode
                          success:^(NSDictionary *accessTokenData) {
                              weakSelf.accessToken = accessTokenData[@"access_token"];
+                             success(weakSelf.accessToken);
                          }
                          failure:^(NSError *error) {
                              // Quering accessToken failed
-                             weakSelf.dismissFailBlock(error);
+                             failure(error);
                          }
      ];
+}
+
+- (void)logout {
     
+    [LinkedinSimpleKeychain deleteObjectWithService:LINKEDIN_TOKEN_KEY];
+    [LinkedinSimpleKeychain deleteObjectWithService:LINKEDIN_AUTHORIZATION_CODE];
+    [LinkedinSimpleKeychain deleteObjectWithService:LINKEDIN_EXPIRATION_KEY];
+    [LinkedinSimpleKeychain deleteObjectWithService:LINKEDIN_CREATION_KEY];
 }
 
 #pragma mark - Request Me Via Access Token -
@@ -198,7 +231,7 @@ NSString * StringOrEmpty(NSString *string) {
     
     NSAssert(_customSubPermissions, @"Sub Permissions can not be null !!");
     
-    return [[NSString stringWithFormat:@"https://api.linkedin.com/v1/people/~:(%@)?oauth2_access_token=%@&format=json", _customSubPermissions, _accessToken] stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
+    return [[NSString stringWithFormat:@"https://api.linkedin.com/v1/people/~:(%@)?oauth2_access_token=%@&format=json", _customSubPermissions, [self accessToken]] stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
 }
 
 - ( void )requestMeWithToken {
