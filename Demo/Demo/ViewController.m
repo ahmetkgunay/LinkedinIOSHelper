@@ -75,9 +75,9 @@
 #warning - Your LinkedIn App ClientId - ClientSecret - RedirectUrl - And state
         
         [linkedIn requestMeWithSenderViewController:self
-                                           clientId:@"78kwym3bwepl09"
-                                       clientSecret:@"zK5dzNWLZXc4J6Ih"
-                                        redirectUrl:@"http://www.hurriyet.com.tr/anasayfa/"
+                                           clientId:@""
+                                       clientSecret:@""
+                                        redirectUrl:@""
                                         permissions:permissions
                                               state:@""
                                     successUserInfo:^(NSDictionary *userInfo) {
