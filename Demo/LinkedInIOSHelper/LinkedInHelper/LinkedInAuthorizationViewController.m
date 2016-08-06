@@ -166,6 +166,7 @@ NSString * const linkedinIosHelperDomain = @"com.linkedinioshelper";
     
     NSMutableDictionary *mdQueryStrings = [[NSMutableDictionary alloc] init];
     urlString = [[urlString componentsSeparatedByString:@"?"] objectAtIndex:1];
+    urlString = [[urlString componentsSeparatedByString:@"#"] objectAtIndex:0];
     for (NSString *qs in [urlString componentsSeparatedByString:@"&"]) {
         [mdQueryStrings setValue:[[[[qs componentsSeparatedByString:@"="] objectAtIndex:1]
                                    stringByReplacingOccurrencesOfString:@"+" withString:@" "]
