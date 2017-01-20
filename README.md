@@ -31,12 +31,12 @@ If you want to login user with LinkedIn Api, so you can easily fetch your inform
         
 #warning - Your LinkedIn App ClientId - ClientSecret - RedirectUrl
         
-    [linkedIn requestMeWithSenderViewController:self
-                                       clientId:@""         // Your App Client Id
-                                   clientSecret:@""         // Your App Client Secret
-                                    redirectUrl:@""         // Your App Redirect Url
-                                    permissions:permissions
-                                          state:@""               // Your client state
+    //takes the authentication from a LinkedInService-Info.plist which must be in your bundle. 
+    //That way credentials don't get mixed up with code. See the header on how to create it.
+	//If you really want, there is also a variant where you pass the clientId, -secret & redirectUrl directly but thats only ok for small projects :) */
+    [linkedIn requestMeUsingConfigWithSenderViewController:self
+                                          permissions:permissions
+                                          State:nil
                                 successUserInfo:^(NSDictionary *userInfo) {
                                     // Whole User Info
                                     NSLog(@"user Info : %@", userInfo);
@@ -73,7 +73,7 @@ This will automatically fetch use informations thanks to valid access token
     
     if (linkedIn.isValidToken) {
                 
-        // So Fetch member info by elderyly access token
+        // So Fetch member info by prior access token
         [linkedIn autoFetchUserInfoWithSuccess:^(NSDictionary *userInfo) {
             // Whole User Info
             NSLog(@"user Info : %@", userInfo);

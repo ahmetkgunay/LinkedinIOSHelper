@@ -98,7 +98,7 @@ NSString * StringOrEmpty(NSString *string) {
     return self.service.accessToken;
 }
 
-#pragma mark - Connect -
+#pragma mark - Public Interface -
 
 - (void)requestMeWithSenderViewController:(id)sender
                                  clientId:(NSString *)clientId
@@ -114,6 +114,12 @@ NSString * StringOrEmpty(NSString *string) {
     self.applicationWithRedirectURL = redirectUrl;
     self.permissions = permissions;
     
+    if(!clientId.length || !clientSecret.length || !redirectUrl.length) {
+        NSError *e = [NSError errorWithDomain:@"LinkedInHelper" code:1 userInfo:@{NSLocalizedFailureReasonErrorKey:@"not all required values (clientId, clientSecret, redirectUrl) given"}];
+        if(failure) failure(e);
+        return;
+    }
+
     NSString *lclState = state.length ? state : @"DCEEFWF45453sdffef424";
     self.service = [LinkedInServiceManager serviceForPresentingViewController:_sender
                                                              cancelButtonText:self.cancelButtonText
@@ -156,7 +162,47 @@ NSString * StringOrEmpty(NSString *string) {
      ];
 }
 
-#pragma mark - AutoLogin -
+- (void)requestMeUsingConfigWithSender:(id)sender
+                           permissions:(NSArray *)permissions
+                                 state:(NSString *)state
+                       successUserInfo:( void (^) (NSDictionary *userInfo) )successUserInfo
+                     failUserInfoBlock:( void (^) (NSError *error))failure {
+    
+    NSString *path = [[NSBundle mainBundle] pathForResource:@"LinkedInService-Info" ofType:@"plist"];
+    NSDictionary *config = nil;
+    NSError *e = nil;
+    
+    NSString *clientId = nil;
+    NSString *clientSecret = nil;
+    NSString *redirectUrl = nil;
+    
+    if(path) {
+        config = [NSDictionary dictionaryWithContentsOfFile:path];
+        
+        if(config) {
+            clientId = config[@"clientId"];
+            clientSecret = config[@"clientSecret"];
+            redirectUrl = config[@"redirectUrl"];
+            
+            if(!clientId.length || !clientSecret.length || !redirectUrl.length) {
+                e = [NSError errorWithDomain:@"LinkedInHelper" code:1 userInfo:@{NSLocalizedFailureReasonErrorKey:@"Cant find required values (clientId, clientSecret, redirectUrl) in LinkedInService-Info.plist"}];
+            }
+        }
+        else {
+            e = [NSError errorWithDomain:@"LinkedInHelper" code:0 userInfo:@{NSLocalizedFailureReasonErrorKey:@"Cant find parse LinkedInService-Info.plist"}];
+        }
+    }
+    else {
+        e = [NSError errorWithDomain:@"LinkedInHelper" code:0 userInfo:@{NSLocalizedFailureReasonErrorKey:@"Cant find LinkedInService-Info.plist in main bundle"}];
+    }
+    
+    if(e == nil) {
+        [self requestMeWithSenderViewController:sender clientId:clientId clientSecret:clientSecret redirectUrl:redirectUrl permissions:permissions state:state successUserInfo:successUserInfo failUserInfoBlock:failure];
+    }
+    else {
+        if(failure) failure(e);
+    }
+}
 
 - (void)autoFetchUserInfoWithSuccess:( void (^) (NSDictionary *userInfo) )successUserInfo
                         failUserInfo:( void (^) (NSError *error))failure {
@@ -168,7 +214,8 @@ NSString * StringOrEmpty(NSString *string) {
         _accessToken = self.service.accessToken;
         [self requestMeWithToken];
     } else {
-        NSLog(@"!!!! Token must be valid to autologin !!!!");
+        NSError *e = [NSError errorWithDomain:@"LinkedInHelper" code:1 userInfo:@{NSLocalizedFailureReasonErrorKey:@"Token is not valid for auto fetching user"}];
+        failure(e);
     }
 }
 
@@ -180,12 +227,17 @@ NSString * StringOrEmpty(NSString *string) {
                                success:(void (^) (NSString *accessToken))success
                               failure:(void (^) (NSError *err) )failure {
     
-    
     self.clientId = clientId;
     self.clientSecret = clientSecret;
     self.applicationWithRedirectURL = redirectUrl;
     self.permissions = permissions;
     
+    if(!clientId.length || !clientSecret.length || !redirectUrl.length) {
+        NSError *e = [NSError errorWithDomain:@"LinkedInHelper" code:1 userInfo:@{NSLocalizedFailureReasonErrorKey:@"not all required values (clientId, clientSecret, redirectUrl) given"}];
+        if(failure) failure(e);
+        return;
+    }
+
     NSString *lclState = state.length ? state : @"DCEEFWF45453sdffef424";
     self.service = [LinkedInServiceManager serviceForPresentingViewController:_sender
                                                              cancelButtonText:self.cancelButtonText
@@ -201,6 +253,12 @@ NSString * StringOrEmpty(NSString *string) {
     
     NSString *authCode = self.service.authorizationCode.length ? self.service.authorizationCode : [LinkedinSimpleKeychain loadWithService:LINKEDIN_AUTHORIZATION_CODE];
 
+    if(!authCode.length) {
+        NSError *e = [NSError errorWithDomain:@"LinkedInHelper" code:3 userInfo:@{NSLocalizedFailureReasonErrorKey:@"No previous authCode. cant refresh"}];
+        if(failure) failure(e);
+        return;
+    }
+    
     [self.service getAccessToken:authCode
                          success:^(NSDictionary *accessTokenData) {
                              weakSelf.accessToken = accessTokenData[@"access_token"];
@@ -211,6 +269,47 @@ NSString * StringOrEmpty(NSString *string) {
                              failure(error);
                          }
      ];
+}
+
+- (void)refreshAccessTokenUsingConfigWithPermissions:(NSArray *)permissions
+                                               state:(NSString *)state
+                                             success:(void (^) (NSString *accessToken))success
+                                             failure:(void (^) (NSError *err) )failure {
+    
+    NSString *path = [[NSBundle mainBundle] pathForResource:@"LinkedInService-Info" ofType:@"plist"];
+    NSDictionary *config = nil;
+    NSError *e = nil;
+    
+    NSString *clientId = nil;
+    NSString *clientSecret = nil;
+    NSString *redirectUrl = nil;
+    
+    if(path) {
+        config = [NSDictionary dictionaryWithContentsOfFile:path];
+        
+        if(config) {
+            clientId = config[@"clientId"];
+            clientSecret = config[@"clientSecret"];
+            redirectUrl = config[@"redirectUrl"];
+            
+            if(!clientId.length || !clientSecret.length || !redirectUrl.length) {
+                e = [NSError errorWithDomain:@"LinkedInHelper" code:1 userInfo:@{NSLocalizedFailureReasonErrorKey:@"Cant find required values (clientId, clientSecret, redirectUrl) in LinkedInService-Info.plist"}];
+            }
+        }
+        else {
+            e = [NSError errorWithDomain:@"LinkedInHelper" code:0 userInfo:@{NSLocalizedFailureReasonErrorKey:@"Cant find parse LinkedInService-Info.plist"}];
+        }
+    }
+    else {
+        e = [NSError errorWithDomain:@"LinkedInHelper" code:0 userInfo:@{NSLocalizedFailureReasonErrorKey:@"Cant find LinkedInService-Info.plist in main bundle"}];
+    }
+    
+    if(e == nil) {
+        [self refreshAccessTokenWithClientId:clientId clientSecret:clientSecret redirectUrl:redirectUrl permissions:permissions state:state success:success failure:failure];
+    }
+    else {
+        if(failure) failure(e);
+    }
 }
 
 - (void)logout {
