@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>clientId</key>
+	<string>86jpklfa2vcrps</string>
+	<key>clientSecret</key>
+	<string>oDE2T0Jxkedq0Oa9</string>
+	<key>redirectUrl</key>
+	<string>https://sapient.com/socialLoginTest</string>
+</dict>
+</plist>
