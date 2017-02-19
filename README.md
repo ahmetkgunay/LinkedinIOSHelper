@@ -99,14 +99,6 @@ it, simply add the following line to your Podfile:
 pod 'LinkedinIOSHelper', '~> 1.0.7'
 ```
 
-## TODO
-* Share on LinkedIn
-* Apply with LinkedIn
-* Manage Company Pages
-
-## Credits
-* Special thanks to [IOSLinkedInAPI](https://github.com/jeyben/IOSLinkedInAPI), this library helped me much about how to connect Linkedin Rest API. 
-
 ## Author
 
 Ahmet Kazım Günay, ahmetkgunay@gmail.com
