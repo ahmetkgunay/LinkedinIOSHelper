@@ -72,35 +72,30 @@
         
         linkedIn.showActivityIndicator = YES;
         
-#warning - Your LinkedIn App ClientId - ClientSecret - RedirectUrl - And state
-        
-        [linkedIn requestMeWithSenderViewController:self
-                                           clientId:@""
-                                       clientSecret:@""
-                                        redirectUrl:@""
-                                        permissions:permissions
-                                              state:@""
-                                    successUserInfo:^(NSDictionary *userInfo) {
-                                        
-                                        self.btnLogout.hidden = !linkedIn.isValidToken;
-                                        
-                                        NSString * desc = [NSString stringWithFormat:@"first name : %@\n last name : %@",
-                                                           userInfo[@"firstName"], userInfo[@"lastName"] ];
-                                        [self showAlert:desc];
-
-                                        // Whole User Info
-                                        NSLog(@"user Info : %@", userInfo);
-                                        // You can also fetch user's those informations like below
-                                        NSLog(@"job title : %@",     [LinkedInHelper sharedInstance].title);
-                                        NSLog(@"company Name : %@",  [LinkedInHelper sharedInstance].companyName);
-                                        NSLog(@"email address : %@", [LinkedInHelper sharedInstance].emailAddress);
-                                        NSLog(@"Photo Url : %@",     [LinkedInHelper sharedInstance].photo);
-                                        NSLog(@"Industry : %@",      [LinkedInHelper sharedInstance].industry);
-                                    }
-                                  failUserInfoBlock:^(NSError *error) {
-                                      NSLog(@"error : %@", error.userInfo.description);
-                                      self.btnLogout.hidden = !linkedIn.isValidToken; 
-                                  }
+        [linkedIn requestMeUsingConfigWithSender:self
+                                     permissions:permissions
+                                           state:@""
+                                 successUserInfo:^(NSDictionary *userInfo) {
+                                     
+                                     self.btnLogout.hidden = !linkedIn.isValidToken;
+                                     
+                                     NSString * desc = [NSString stringWithFormat:@"first name : %@\n last name : %@",
+                                                        userInfo[@"firstName"], userInfo[@"lastName"] ];
+                                     [self showAlert:desc];
+                                     
+                                     // Whole User Info
+                                     NSLog(@"user Info : %@", userInfo);
+                                     // You can also fetch user's those informations like below
+                                     NSLog(@"job title : %@",     [LinkedInHelper sharedInstance].title);
+                                     NSLog(@"company Name : %@",  [LinkedInHelper sharedInstance].companyName);
+                                     NSLog(@"email address : %@", [LinkedInHelper sharedInstance].emailAddress);
+                                     NSLog(@"Photo Url : %@",     [LinkedInHelper sharedInstance].photo);
+                                     NSLog(@"Industry : %@",      [LinkedInHelper sharedInstance].industry);
+                                 }
+                               failUserInfoBlock:^(NSError *error) {
+                                   NSLog(@"error : %@", error.userInfo.description);
+                                   self.btnLogout.hidden = !linkedIn.isValidToken;
+                               }
          ];
     }
 }
