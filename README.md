@@ -3,6 +3,14 @@
 [![Version](https://img.shields.io/cocoapods/v/LinkedinIOSHelper.svg?style=flat)](http://cocoapods.org/pods/LinkedinIOSHelper)
 [![License](https://img.shields.io/cocoapods/l/LinkedinIOSHelper.svg?style=flat)](http://cocoapods.org/pods/LinkedinIOSHelper)
 [![Platform](https://img.shields.io/cocoapods/p/LinkedinIOSHelper.svg?style=flat)](http://cocoapods.org/pods/LinkedinIOSHelper)
+<p align="left">
+<a href="https://twitter.com/ahmtgny">
+<img src="https://img.shields.io/badge/contact-@ahmtgny-blue.svg?style=flat" alt="Twitter: @ahmtgny" />
+</a>
+<a href="https://github.com/ahmetkgunay/LinkedinIOSHelper/tree/master/LinkedInIOSHelper">
+<img src="https://img.shields.io/gemnasium/mathiasbynens/he.svg?style=flat">
+</a>
+</p>
 
 ## Usage
 
