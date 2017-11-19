@@ -6,7 +6,7 @@
 //  Copyright (c) 2015 ahmetkgunay. All rights reserved.
 //
 
-#import "LinkedInConnectionHandler.h"
+#import <LinkedinIOSHelper/LinkedInConnectionHandler.h>
 #import <UIKit/UIKit.h>
 
 @interface LinkedInConnectionHandler () <NSURLConnectionDataDelegate, NSURLConnectionDelegate>

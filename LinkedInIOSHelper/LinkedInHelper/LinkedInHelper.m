@@ -6,11 +6,11 @@
 //  Copyright (c) 2015 ahmetkgunay. All rights reserved.
 //
 
-#import "LinkedInHelper.h"
-#import "LinkedInServiceManager.h"
-#import "LinkedInIOSFields.h"
-#import "LinkedInConnectionHandler.h"
-#import "LinkedinSimpleKeychain.h"
+#import <LinkedinIOSHelper/LinkedInHelper.h>
+#import <LinkedinIOSHelper/LinkedInServiceManager.h>
+#import <LinkedinIOSHelper/LinkedInIOSFields.h>
+#import <LinkedinIOSHelper/LinkedInConnectionHandler.h>
+#import <LinkedinIOSHelper/LinkedinSimpleKeychain.h>
 
 @interface LinkedInHelper ()
 

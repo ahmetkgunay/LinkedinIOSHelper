@@ -6,8 +6,8 @@
 //  Copyright (c) 2015 ahmetkgunay. All rights reserved.
 //
 
-#import "LinkedInAppSettings.h"
-#import "LinkedInIOSFields.h"
+#import <LinkedinIOSHelper/LinkedInAppSettings.h>
+#import <LinkedinIOSHelper/LinkedInIOSFields.h>
 
 @interface LinkedInAppSettings ()
 

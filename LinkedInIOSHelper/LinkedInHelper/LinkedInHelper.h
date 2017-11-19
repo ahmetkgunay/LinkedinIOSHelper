@@ -7,7 +7,7 @@
 //
 
 #import <Foundation/Foundation.h>
-#import "LinkedInIOSFields.h"
+#import <LinkedinIOSHelper/LinkedInIOSFields.h>
 
 @interface LinkedInHelper : NSObject
 
@@ -21,7 +21,7 @@
  * @param sender is the UIViewcontroller which the web authentication will be fired from
  * @param clientId the clientId of application that you created on linkedin developer portal
  * @param clientSecret of application that you created on linkedin developer portal
- * @param applicationWithRedirectURL the applicationWithRedirectURL of application that you created on linkedin developer portal
+ * @param redirectUrl the applicationWithRedirectURL of application that you created on linkedin developer portal
  * @param permissions the grantedaccesses to fetch from Linkedin Rest api
  * @param successUserInfo Returns successful user info which are requested via grantedAccess
  * @param failure Returns the failure statement of connection

@@ -6,9 +6,9 @@
 //  Copyright (c) 2015 ahmetkgunay. All rights reserved.
 //
 
-#import "LinkedInAuthorizationViewController.h"
-#import "LinkedInIOSFields.h"
-#import "LinkedInServiceManager.h"
+#import <LinkedinIOSHelper/LinkedInAuthorizationViewController.h>
+#import <LinkedinIOSHelper/LinkedInIOSFields.h>
+#import <LinkedinIOSHelper/LinkedInServiceManager.h>
 
 #define SYSTEM_VERSION_GREATER_THAN_OR_EQUAL_TO(v)  ([[[UIDevice currentDevice] systemVersion] compare:v options:NSNumericSearch] != NSOrderedAscending)
 #define kActivityIndicatiorTag       999999

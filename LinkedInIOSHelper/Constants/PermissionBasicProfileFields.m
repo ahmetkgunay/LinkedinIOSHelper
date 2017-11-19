@@ -6,7 +6,7 @@
 //  Copyright (c) 2015 Ahmet Kazım Günay. All rights reserved.
 //
 
-#import "PermissionBasicProfileFields.h"
+#import <LinkedinIOSHelper/PermissionBasicProfileFields.h>
 
 @implementation PermissionBasicProfileFields
 

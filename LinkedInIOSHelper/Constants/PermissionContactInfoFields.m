@@ -6,7 +6,7 @@
 //  Copyright (c) 2015 Ahmet Kazım Günay. All rights reserved.
 //
 
-#import "PermissionContactInfoFields.h"
+#import <LinkedinIOSHelper/PermissionContactInfoFields.h>
 
 @implementation PermissionContactInfoFields
 

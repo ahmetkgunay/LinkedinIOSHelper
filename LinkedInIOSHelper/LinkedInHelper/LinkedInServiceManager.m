@@ -7,10 +7,10 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "LinkedInServiceManager.h"
-#import "LinkedInAuthorizationViewController.h"
-#import "LinkedInConnectionHandler.h"
-#import "LinkedinSimpleKeychain.h"
+#import <LinkedinIOSHelper/LinkedInServiceManager.h>
+#import <LinkedinIOSHelper/LinkedInAuthorizationViewController.h>
+#import <LinkedinIOSHelper/LinkedInConnectionHandler.h>
+#import <LinkedinIOSHelper/LinkedinSimpleKeychain.h>
 
 @interface LinkedInServiceManager ()
 

@@ -6,7 +6,7 @@
 //  Copyright (c) 2015 Ahmet Kazım Günay. All rights reserved.
 //
 
-#import "PermissionNetworkFields.h"
+#import <LinkedinIOSHelper/PermissionNetworkFields.h>
 
 @implementation PermissionNetworkFields
 
