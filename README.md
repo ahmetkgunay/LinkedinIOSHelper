@@ -102,7 +102,7 @@ LinkedinIOSHelper is available through [CocoaPods](http://cocoapods.org). To ins
 it, simply add the following line to your Podfile:
 
 ```ruby
-pod 'LinkedinIOSHelper', '~> 1.0.7'
+pod 'LinkedinIOSHelper', '~> 1.0.8'
 ```
 
 ## Author
