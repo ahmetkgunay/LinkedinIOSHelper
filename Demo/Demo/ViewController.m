@@ -87,7 +87,7 @@
                                         NSString * desc = [NSString stringWithFormat:@"first name : %@\n last name : %@",
                                                            userInfo[@"firstName"], userInfo[@"lastName"] ];
                                         [self showAlert:desc];
-
+                                        
                                         // Whole User Info
                                         NSLog(@"user Info : %@", userInfo);
                                         // You can also fetch user's those informations like below
@@ -96,11 +96,14 @@
                                         NSLog(@"email address : %@", [LinkedInHelper sharedInstance].emailAddress);
                                         NSLog(@"Photo Url : %@",     [LinkedInHelper sharedInstance].photo);
                                         NSLog(@"Industry : %@",      [LinkedInHelper sharedInstance].industry);
+                                        
+                                    } cancelBlock:^{
+                                        NSLog(@"User cancelled the request Action");
+                                        self.btnLogout.hidden = NO;
+                                    } failUserInfoBlock:^(NSError *error) {
+                                        NSLog(@"error : %@", error.userInfo.description);
+                                        self.btnLogout.hidden = !linkedIn.isValidToken;
                                     }
-                                  failUserInfoBlock:^(NSError *error) {
-                                      NSLog(@"error : %@", error.userInfo.description);
-                                      self.btnLogout.hidden = !linkedIn.isValidToken; 
-                                  }
          ];
     }
 }

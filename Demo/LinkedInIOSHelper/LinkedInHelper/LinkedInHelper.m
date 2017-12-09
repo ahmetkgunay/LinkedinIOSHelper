@@ -56,6 +56,12 @@
 @property (nonatomic, copy) void (^userInfoSuccessBlock)(NSDictionary *userInfo);
 
 /*!
+ * @brief Returns cancel block if user cancelled the request
+ */
+@property (nonatomic, copy) void (^cancelBlock)(void);
+
+
+/*!
  * @brief Returns the failure statement of connection
  */
 @property (nonatomic, copy) void (^dismissFailBlock)(NSError *error);
@@ -107,6 +113,7 @@ NSString * StringOrEmpty(NSString *string) {
                               permissions:(NSArray *)permissions
                                     state:(NSString *)state
                           successUserInfo:( void (^) (NSDictionary *userInfo) )successUserInfo
+                              cancelBlock:( void (^) (void) )cancelBlock
                         failUserInfoBlock:( void (^) (NSError *error))failure {
     
     self.clientId = clientId;
@@ -128,6 +135,7 @@ NSString * StringOrEmpty(NSString *string) {
     _sender = sender;
     _userInfoSuccessBlock = successUserInfo;
     _dismissFailBlock = failure;
+    _cancelBlock = cancelBlock;
     
     __weak typeof(self) weakSelf = self;
     
@@ -145,9 +153,7 @@ NSString * StringOrEmpty(NSString *string) {
     }
                                 cancel:^{
                                     // Authorization was cancelled by user
-                                    weakSelf.dismissFailBlock([NSError errorWithDomain:@"com.linkedinioshelper"
-                                                                              code:-5
-                                                                          userInfo:@{NSLocalizedDescriptionKey:@"Authorization was cancelled by user" }]);
+                                    weakSelf.cancelBlock();
                                 }
                                failure:^(NSError *error) {
                                    // Authorization failed

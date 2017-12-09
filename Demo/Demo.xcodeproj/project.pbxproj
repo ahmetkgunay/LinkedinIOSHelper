@@ -25,6 +25,7 @@
 		C34FFB0C1FC204E000256AAF /* LinkedInHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = C34FFAFF1FC204E000256AAF /* LinkedInHelper.m */; };
 		C34FFB0D1FC204E000256AAF /* LinkedInServiceManager.m in Sources */ = {isa = PBXBuildFile; fileRef = C34FFB011FC204E000256AAF /* LinkedInServiceManager.m */; };
 		C34FFB0E1FC204E000256AAF /* LinkedinSimpleKeychain.m in Sources */ = {isa = PBXBuildFile; fileRef = C34FFB031FC204E000256AAF /* LinkedinSimpleKeychain.m */; };
+		C35466E31FDBF2010062915C /* LinkedinAuthorizationNavBar.m in Sources */ = {isa = PBXBuildFile; fileRef = C35466E21FDBF2010062915C /* LinkedinAuthorizationNavBar.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -74,6 +75,8 @@
 		C34FFB011FC204E000256AAF /* LinkedInServiceManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LinkedInServiceManager.m; sourceTree = "<group>"; };
 		C34FFB021FC204E000256AAF /* LinkedinSimpleKeychain.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LinkedinSimpleKeychain.h; sourceTree = "<group>"; };
 		C34FFB031FC204E000256AAF /* LinkedinSimpleKeychain.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LinkedinSimpleKeychain.m; sourceTree = "<group>"; };
+		C35466E11FDBF2010062915C /* LinkedinAuthorizationNavBar.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LinkedinAuthorizationNavBar.h; sourceTree = "<group>"; };
+		C35466E21FDBF2010062915C /* LinkedinAuthorizationNavBar.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LinkedinAuthorizationNavBar.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -184,18 +187,20 @@
 		C34FFAF71FC204E000256AAF /* LinkedInHelper */ = {
 			isa = PBXGroup;
 			children = (
+				C34FFAFE1FC204E000256AAF /* LinkedInHelper.h */,
+				C34FFAFF1FC204E000256AAF /* LinkedInHelper.m */,
 				C34FFAF81FC204E000256AAF /* LinkedInAppSettings.h */,
 				C34FFAF91FC204E000256AAF /* LinkedInAppSettings.m */,
 				C34FFAFA1FC204E000256AAF /* LinkedInAuthorizationViewController.h */,
 				C34FFAFB1FC204E000256AAF /* LinkedInAuthorizationViewController.m */,
 				C34FFAFC1FC204E000256AAF /* LinkedInConnectionHandler.h */,
 				C34FFAFD1FC204E000256AAF /* LinkedInConnectionHandler.m */,
-				C34FFAFE1FC204E000256AAF /* LinkedInHelper.h */,
-				C34FFAFF1FC204E000256AAF /* LinkedInHelper.m */,
 				C34FFB001FC204E000256AAF /* LinkedInServiceManager.h */,
 				C34FFB011FC204E000256AAF /* LinkedInServiceManager.m */,
 				C34FFB021FC204E000256AAF /* LinkedinSimpleKeychain.h */,
 				C34FFB031FC204E000256AAF /* LinkedinSimpleKeychain.m */,
+				C35466E11FDBF2010062915C /* LinkedinAuthorizationNavBar.h */,
+				C35466E21FDBF2010062915C /* LinkedinAuthorizationNavBar.m */,
 			);
 			path = LinkedInHelper;
 			sourceTree = "<group>";
@@ -300,6 +305,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				C35466E31FDBF2010062915C /* LinkedinAuthorizationNavBar.m in Sources */,
 				C34FFB051FC204E000256AAF /* PermissionContactInfoFields.m in Sources */,
 				C34FFB041FC204E000256AAF /* PermissionBasicProfileFields.m in Sources */,
 				C34FFB061FC204E000256AAF /* PermissionEmailFields.m in Sources */,

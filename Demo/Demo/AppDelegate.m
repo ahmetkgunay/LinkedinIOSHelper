@@ -7,6 +7,7 @@
 //
 
 #import "AppDelegate.h"
+#import "LinkedInHelper.h"
 
 @interface AppDelegate ()
 
@@ -14,9 +15,25 @@
 
 @implementation AppDelegate
 
-
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
-    // Override point for customization after application launch.
+
+    [[LinkedinAuthorizationNavBar appearance] setAuthTintColor:[UIColor redColor]];
+    [[LinkedinAuthorizationNavBar appearance] setAuthBarIsTranslucent:TRUE];
+    [[LinkedinAuthorizationNavBar appearance] setAuthBarTintColor:[UIColor lightGrayColor]];
+    [[LinkedinAuthorizationNavBar appearance] setAuthTitle:@"Linkedin"];
+
+    NSDictionary *titleAttributes = @{
+                                      NSForegroundColorAttributeName:[UIColor blackColor],
+                                      NSFontAttributeName:[UIFont boldSystemFontOfSize:16]
+                                      };
+    [[LinkedinAuthorizationNavBar appearance] setAuthBarTitleTextAttributes:titleAttributes];
+    
+    NSDictionary *cancelButtonAttr = @{
+                                      NSForegroundColorAttributeName:[UIColor redColor],
+                                      NSFontAttributeName:[UIFont boldSystemFontOfSize:14]
+                                      };
+    [[LinkedinAuthorizationNavBar appearance] setAuthCancelButtonTitleTextAttributes:cancelButtonAttr];
+
     return YES;
 }
 

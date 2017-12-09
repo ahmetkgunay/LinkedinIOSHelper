@@ -11,6 +11,7 @@
 #import "LinkedInAuthorizationViewController.h"
 #import "LinkedInConnectionHandler.h"
 #import "LinkedinSimpleKeychain.h"
+#import "LinkedinAuthorizationNavBar.h"
 
 @interface LinkedInServiceManager ()
 
@@ -48,6 +49,7 @@
     __weak typeof (self) weakSelf = self;
     
     LinkedInAuthorizationViewController *vc = [[LinkedInAuthorizationViewController alloc] initWithServiceManager:self];
+    
     vc.showActivityIndicator = _showActivityIndicator;
     
     [vc setAuthorizationCodeCancelCallback:^{
@@ -75,13 +77,14 @@
     if (self.presentingViewController == nil)
         self.presentingViewController = [[UIApplication sharedApplication] keyWindow].rootViewController;
     
-    UINavigationController *nc = [[UINavigationController alloc] initWithRootViewController:vc];
+    UINavigationController *navigationController= [[UINavigationController alloc] initWithNavigationBarClass:[LinkedinAuthorizationNavBar class] toolbarClass:nil];
+    [navigationController setViewControllers:@[vc] animated:NO];
     
     if ([[UIDevice currentDevice] userInterfaceIdiom] == UIUserInterfaceIdiomPad) {
-        nc.modalPresentationStyle = UIModalPresentationFormSheet;
+        navigationController.modalPresentationStyle = UIModalPresentationFormSheet;
     }
     
-    [self.presentingViewController presentViewController:nc animated:YES completion:nil];
+    [self.presentingViewController presentViewController:navigationController animated:YES completion:nil];
 }
 
 - (NSString *)authorizationCode {
