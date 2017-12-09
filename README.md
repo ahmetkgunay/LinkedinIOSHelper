@@ -92,6 +92,37 @@ This will automatically fetch use informations thanks to valid access token
 For more information please check the Demo App.
 I tried to do my best in code by writing well documentation.
 
+## Customization Navigation Bar Of Authorization ViewController
+
+You can customize app-wide Linkedin Auth View Controller Navigation Bar as shown below
+
+- Appearence Support
+
+```objective-c
+
+- (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
+
+    [[LinkedinAuthorizationNavBar appearance] setAuthTintColor:[UIColor redColor]];
+    [[LinkedinAuthorizationNavBar appearance] setAuthBarIsTranslucent:TRUE];
+    [[LinkedinAuthorizationNavBar appearance] setAuthBarTintColor:[UIColor lightGrayColor]];
+    [[LinkedinAuthorizationNavBar appearance] setAuthTitle:@"Linkedin"];
+
+    NSDictionary *titleAttributes = @{
+    NSForegroundColorAttributeName:[UIColor blackColor],
+    NSFontAttributeName:[UIFont boldSystemFontOfSize:16]
+    };
+    [[LinkedinAuthorizationNavBar appearance] setAuthBarTitleTextAttributes:titleAttributes];
+
+    NSDictionary *cancelButtonAttr = @{
+    NSForegroundColorAttributeName:[UIColor redColor],
+    NSFontAttributeName:[UIFont boldSystemFontOfSize:14]
+    };
+    [[LinkedinAuthorizationNavBar appearance] setAuthCancelButtonTitleTextAttributes:cancelButtonAttr];
+
+    return YES;
+}
+```
+
 ## Requirements
 
 This library requires a deployment target of iOS 6.0 or greater.
