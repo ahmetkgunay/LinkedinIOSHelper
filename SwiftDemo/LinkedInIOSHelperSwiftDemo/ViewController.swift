@@ -37,10 +37,9 @@ class ViewController: UIViewController {
             
             linkedin.autoFetchUserInfo(success: { [weak self] (userInfo) in
                 
-                guard let strongSelf = self else { return }
+                guard let strongSelf = self, let info : [AnyHashable : Any] = userInfo  else { return }
                 strongSelf.btnLogout.isHidden = !linkedin.isValidToken();
                 
-                let info : [AnyHashable : String] = userInfo as! [AnyHashable : String]
                 guard let firstName = info["firstName"], let lastName = info["lastName"] else { return }
                 let resultString = "first name : \(firstName)\n last name : \(lastName)"
                 strongSelf.showAlert(userInfo: resultString)
@@ -57,17 +56,14 @@ class ViewController: UIViewController {
             
             // FIXME: Add your clientId, secret and redeirectUrl here
 
-            linkedin.requestMeWithSenderViewController(self, clientId: "", clientSecret: "", redirectUrl: "", permissions: permissions, state: "", successUserInfo: { [weak self] (userInfo) in
+            linkedin.requestMeWithSenderViewController(self, clientId: "7889k77xz96q39", clientSecret: "5W5FfEqcP4ig7vFC", redirectUrl: "http://www.hurriyet.com.tr/anasayfa/", permissions: permissions, state: "", successUserInfo: { [weak self] (userInfo) in
                 
-                guard let strongSelf = self else { return }
+                guard let strongSelf = self, let info : [AnyHashable : Any] = userInfo  else { return }
                 strongSelf.btnLogout.isHidden = !linkedin.isValidToken();
                 
-                if let info : [AnyHashable : String] = userInfo as? [AnyHashable : String] {
-
-                    guard let firstName = info["firstName"], let lastName = info["lastName"] else { return }
-                    let resultString = "first name : \(firstName)\n last name : \(lastName)"
-                    strongSelf.showAlert(userInfo: resultString)
-                }
+                guard let firstName = info["firstName"], let lastName = info["lastName"] else { return }
+                let resultString = "first name : \(firstName)\n last name : \(lastName)"
+                strongSelf.showAlert(userInfo: resultString)
                 
                 }, failUserInfoBlock: { (error) in
                     
