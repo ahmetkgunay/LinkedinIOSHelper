@@ -9,6 +9,13 @@
 <a href="https://github.com/ahmetkgunay/LinkedinIOSHelper/tree/master/LinkedInIOSHelper">
 <img src="https://img.shields.io/gemnasium/mathiasbynens/he.svg?style=flat">
 </a>
+<a href="https://github.com/ahmetkgunay/LinkedinIOSHelper/tree/master/LinkedInIOSHelper">
+<img src="https://img.shields.io/cocoapods/at/LinkedinIOSHelper.svg?style=flat">
+</a>
+<a href="https://github.com/ahmetkgunay/LinkedinIOSHelper/tree/master/LinkedInIOSHelper">
+<img src="https://img.shields.io/cocoapods/dt/LinkedinIOSHelper.svg?style=flat">
+</a>
+
 
 ## Usage
 
