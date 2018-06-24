@@ -56,7 +56,7 @@ class ViewController: UIViewController {
             
             // FIXME: Add your clientId, secret and redeirectUrl here
 
-            linkedin.requestMeWithSenderViewController(self, clientId: "7889k77xz96q39", clientSecret: "5W5FfEqcP4ig7vFC", redirectUrl: "http://www.hurriyet.com.tr/anasayfa/", permissions: permissions, state: "", successUserInfo: { [weak self] (userInfo) in
+            linkedin.requestMeWithSenderViewController(self, clientId: "", clientSecret: "", redirectUrl: "", permissions: permissions, state: "", successUserInfo: { [weak self] (userInfo) in
                 
                 guard let strongSelf = self, let info : [AnyHashable : Any] = userInfo  else { return }
                 strongSelf.btnLogout.isHidden = !linkedin.isValidToken();
