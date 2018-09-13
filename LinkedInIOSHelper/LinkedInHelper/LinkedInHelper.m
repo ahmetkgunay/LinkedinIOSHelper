@@ -113,6 +113,7 @@ NSString * StringOrEmpty(NSString *string) {
     self.clientSecret = clientSecret;
     self.applicationWithRedirectURL = redirectUrl;
     self.permissions = permissions;
+    self.sender = sender;
     
     NSString *lclState = state.length ? state : @"DCEEFWF45453sdffef424";
     self.service = [LinkedInServiceManager serviceForPresentingViewController:_sender
@@ -125,7 +126,6 @@ NSString * StringOrEmpty(NSString *string) {
     
     self.service.showActivityIndicator = self.showActivityIndicator;
     
-    _sender = sender;
     _userInfoSuccessBlock = successUserInfo;
     _dismissFailBlock = failure;
     
