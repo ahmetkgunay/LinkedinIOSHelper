@@ -17,6 +17,7 @@
 #import "PermissionFullProfileFields.h"
 #import "PermissionNetworkFields.h"
 #import "LinkedInAppSettings.h"
+#import "LinkedinAuthorizationNavBar.h"
 #import "LinkedInAuthorizationViewController.h"
 #import "LinkedInConnectionHandler.h"
 #import "LinkedInHelper.h"
