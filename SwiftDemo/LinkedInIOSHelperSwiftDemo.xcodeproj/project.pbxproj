@@ -7,7 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		8D38CDC794D6BCF5E8120DC8 /* Pods_LinkedInIOSHelperSwiftDemo.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 18B65AB82C3B4597BA581E18 /* Pods_LinkedInIOSHelperSwiftDemo.framework */; };
+		1911B55B27D2DD7056B89C0D /* Pods_LinkedInIOSHelperSwiftDemo.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6E5464E27EF717FAD36A9C76 /* Pods_LinkedInIOSHelperSwiftDemo.framework */; };
 		C360CE271FBF0D0D0037131A /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C360CE261FBF0D0D0037131A /* AppDelegate.swift */; };
 		C360CE291FBF0D0D0037131A /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C360CE281FBF0D0D0037131A /* ViewController.swift */; };
 		C360CE2C1FBF0D0D0037131A /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C360CE2A1FBF0D0D0037131A /* Main.storyboard */; };
@@ -16,9 +16,9 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		18B65AB82C3B4597BA581E18 /* Pods_LinkedInIOSHelperSwiftDemo.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_LinkedInIOSHelperSwiftDemo.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		2C5FC6390776BE4AD8C61C74 /* Pods-LinkedInIOSHelperSwiftDemo.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-LinkedInIOSHelperSwiftDemo.release.xcconfig"; path = "Pods/Target Support Files/Pods-LinkedInIOSHelperSwiftDemo/Pods-LinkedInIOSHelperSwiftDemo.release.xcconfig"; sourceTree = "<group>"; };
-		2CC9093AFE663DF983408A7D /* Pods-LinkedInIOSHelperSwiftDemo.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-LinkedInIOSHelperSwiftDemo.debug.xcconfig"; path = "Pods/Target Support Files/Pods-LinkedInIOSHelperSwiftDemo/Pods-LinkedInIOSHelperSwiftDemo.debug.xcconfig"; sourceTree = "<group>"; };
+		07BC96F3EFEF250C362913D9 /* Pods-LinkedInIOSHelperSwiftDemo.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-LinkedInIOSHelperSwiftDemo.release.xcconfig"; path = "Target Support Files/Pods-LinkedInIOSHelperSwiftDemo/Pods-LinkedInIOSHelperSwiftDemo.release.xcconfig"; sourceTree = "<group>"; };
+		6E5464E27EF717FAD36A9C76 /* Pods_LinkedInIOSHelperSwiftDemo.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_LinkedInIOSHelperSwiftDemo.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		93E22DEEC8BD204183E47536 /* Pods-LinkedInIOSHelperSwiftDemo.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-LinkedInIOSHelperSwiftDemo.debug.xcconfig"; path = "Target Support Files/Pods-LinkedInIOSHelperSwiftDemo/Pods-LinkedInIOSHelperSwiftDemo.debug.xcconfig"; sourceTree = "<group>"; };
 		C360CE231FBF0D0D0037131A /* LinkedInIOSHelperSwiftDemo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = LinkedInIOSHelperSwiftDemo.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		C360CE261FBF0D0D0037131A /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		C360CE281FBF0D0D0037131A /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -34,26 +34,27 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				8D38CDC794D6BCF5E8120DC8 /* Pods_LinkedInIOSHelperSwiftDemo.framework in Frameworks */,
+				1911B55B27D2DD7056B89C0D /* Pods_LinkedInIOSHelperSwiftDemo.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		6F0003F0E3E08C4402F2654A /* Pods */ = {
+		0D645857EA1328A895BAEEE6 /* Pods */ = {
 			isa = PBXGroup;
 			children = (
-				2CC9093AFE663DF983408A7D /* Pods-LinkedInIOSHelperSwiftDemo.debug.xcconfig */,
-				2C5FC6390776BE4AD8C61C74 /* Pods-LinkedInIOSHelperSwiftDemo.release.xcconfig */,
+				93E22DEEC8BD204183E47536 /* Pods-LinkedInIOSHelperSwiftDemo.debug.xcconfig */,
+				07BC96F3EFEF250C362913D9 /* Pods-LinkedInIOSHelperSwiftDemo.release.xcconfig */,
 			);
 			name = Pods;
+			path = Pods;
 			sourceTree = "<group>";
 		};
-		A09A5E946B85D3FDDDA95240 /* Frameworks */ = {
+		8799312C5D9561FD1622C672 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				18B65AB82C3B4597BA581E18 /* Pods_LinkedInIOSHelperSwiftDemo.framework */,
+				6E5464E27EF717FAD36A9C76 /* Pods_LinkedInIOSHelperSwiftDemo.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -63,8 +64,8 @@
 			children = (
 				C360CE251FBF0D0D0037131A /* LinkedInIOSHelperSwiftDemo */,
 				C360CE241FBF0D0D0037131A /* Products */,
-				6F0003F0E3E08C4402F2654A /* Pods */,
-				A09A5E946B85D3FDDDA95240 /* Frameworks */,
+				0D645857EA1328A895BAEEE6 /* Pods */,
+				8799312C5D9561FD1622C672 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -97,12 +98,11 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = C360CE351FBF0D0D0037131A /* Build configuration list for PBXNativeTarget "LinkedInIOSHelperSwiftDemo" */;
 			buildPhases = (
-				032B8AB945F13F8EAA20D8EF /* [CP] Check Pods Manifest.lock */,
+				59A9A5531B268442E65B1A99 /* [CP] Check Pods Manifest.lock */,
 				C360CE1F1FBF0D0D0037131A /* Sources */,
 				C360CE201FBF0D0D0037131A /* Frameworks */,
 				C360CE211FBF0D0D0037131A /* Resources */,
-				C1D420B483F61DAC18F29CFB /* [CP] Embed Pods Frameworks */,
-				C6DF3D131B65709D7C101CB0 /* [CP] Copy Pods Resources */,
+				B990B459321B58DDDD5BF1AA /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -162,49 +162,44 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
-		032B8AB945F13F8EAA20D8EF /* [CP] Check Pods Manifest.lock */ = {
+		59A9A5531B268442E65B1A99 /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
+			inputFileListPaths = (
+			);
 			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
 			);
 			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
 			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-LinkedInIOSHelperSwiftDemo-checkManifestLockResult.txt",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
 			showEnvVarsInLog = 0;
 		};
-		C1D420B483F61DAC18F29CFB /* [CP] Embed Pods Frameworks */ = {
+		B990B459321B58DDDD5BF1AA /* [CP] Embed Pods Frameworks */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
 			inputPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-LinkedInIOSHelperSwiftDemo/Pods-LinkedInIOSHelperSwiftDemo-frameworks.sh",
+				"${BUILT_PRODUCTS_DIR}/LinkedinIOSHelper/LinkedinIOSHelper.framework",
 			);
 			name = "[CP] Embed Pods Frameworks";
 			outputPaths = (
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/LinkedinIOSHelper.framework",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-LinkedInIOSHelperSwiftDemo/Pods-LinkedInIOSHelperSwiftDemo-frameworks.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
-		C6DF3D131B65709D7C101CB0 /* [CP] Copy Pods Resources */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			name = "[CP] Copy Pods Resources";
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-LinkedInIOSHelperSwiftDemo/Pods-LinkedInIOSHelperSwiftDemo-resources.sh\"\n";
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-LinkedInIOSHelperSwiftDemo/Pods-LinkedInIOSHelperSwiftDemo-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 /* End PBXShellScriptBuildPhase section */
@@ -354,7 +349,7 @@
 		};
 		C360CE361FBF0D0D0037131A /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 2CC9093AFE663DF983408A7D /* Pods-LinkedInIOSHelperSwiftDemo.debug.xcconfig */;
+			baseConfigurationReference = 93E22DEEC8BD204183E47536 /* Pods-LinkedInIOSHelperSwiftDemo.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
@@ -372,7 +367,7 @@
 		};
 		C360CE371FBF0D0D0037131A /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 2C5FC6390776BE4AD8C61C74 /* Pods-LinkedInIOSHelperSwiftDemo.release.xcconfig */;
+			baseConfigurationReference = 07BC96F3EFEF250C362913D9 /* Pods-LinkedInIOSHelperSwiftDemo.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;

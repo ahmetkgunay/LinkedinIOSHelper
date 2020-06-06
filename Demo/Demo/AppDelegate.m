@@ -7,7 +7,8 @@
 //
 
 #import "AppDelegate.h"
-#import "LinkedInHelper.h"
+#import "LinkedinIOSHelper/LinkedInHelper.h"
+#import "LinkedinIOSHelper/LinkedinAuthorizationNavBar.h"
 
 @interface AppDelegate ()
 
@@ -16,7 +17,6 @@
 @implementation AppDelegate
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
-
     [[LinkedinAuthorizationNavBar appearance] setAuthTintColor:[UIColor redColor]];
     [[LinkedinAuthorizationNavBar appearance] setAuthBarIsTranslucent:TRUE];
     [[LinkedinAuthorizationNavBar appearance] setAuthBarTintColor:[UIColor lightGrayColor]];
