@@ -15,9 +15,9 @@
 
 NSString * const linkedinIosHelperDomain = @"com.linkedinioshelper";
 
-@interface LinkedInAuthorizationViewController () <UIWebViewDelegate>
+@interface LinkedInAuthorizationViewController () <WKNavigationDelegate>
 
-@property (nonatomic, strong) UIWebView *webView;
+@property (nonatomic, strong) WKWebView *webView;
 @property (nonatomic, assign, getter=isHandling) BOOL handling;
 @property (nonatomic, strong) LinkedInServiceManager *serviceManager;
 
@@ -54,9 +54,10 @@ NSString * const linkedinIosHelperDomain = @"com.linkedinioshelper";
     
     self.navigationItem.leftBarButtonItem = cancelButton;
     
-    self.webView = [[UIWebView alloc] init];
-    self.webView.delegate = self;
-    self.webView.scalesPageToFit = YES;
+    self.webView = [[WKWebView alloc] init];
+    //self.webView.delegate = self;
+    self.webView.navigationDelegate = self;
+    //self.webView.scalesPageToFit = YES;
     [self.view addSubview:self.webView];
     
     if (self.showActivityIndicator) {
@@ -87,77 +88,78 @@ NSString * const linkedinIosHelperDomain = @"com.linkedinioshelper";
 
 #pragma mark - WebView Delegate -
 
-- (BOOL)webView:(UIWebView *)webView shouldStartLoadWithRequest:(NSURLRequest *)request navigationType:(UIWebViewNavigationType)navigationType {
-    
-    NSString *url = [[request URL] absoluteString];
-    
-    //prevent loading URL if it is the redirectURL
-    self.handling = [url hasPrefix:self.serviceManager.settings.applicationWithRedirectURL];
-    
-    if (self.isHandling) {
-        if ([url rangeOfString:@"error"].location != NSNotFound) {
-            BOOL accessDenied = [url rangeOfString:@"the+user+denied+your+request"].location != NSNotFound;
-            if (accessDenied) {
-                if (self.authorizationCodeCancelCallback) {
-                    self.authorizationCodeCancelCallback();
-                }
-            } else {
-                NSError *error = [[NSError alloc] initWithDomain:linkedinIosHelperDomain
-                                                            code:1
-                                                        userInfo:[[NSMutableDictionary alloc] init]];
-                if (self.authorizationCodeFailureCallback) {
-                    self.authorizationCodeFailureCallback(error);
-                }
-            }
-        } else {
-            NSString *receivedState = [self extractGetParameter:@"state" fromURLString: url];
-            
-            //assert that the state is as we expected it to be
-            if ([self.serviceManager.settings.state isEqualToString:receivedState]) {
-                
-                //extract the code from the url
-                NSString *authorizationCode = [self extractGetParameter:@"code" fromURLString: url];
-                if (self.authorizationCodeSuccessCallback) {
-                    self.authorizationCodeSuccessCallback(authorizationCode);
-                }
-            } else {
-                NSError *error = [[NSError alloc] initWithDomain:linkedinIosHelperDomain
-                                                            code:2
-                                                        userInfo:[[NSMutableDictionary alloc] init]];
-                if (self.authorizationCodeFailureCallback) {
-                    self.authorizationCodeFailureCallback(error);
-                }
-            }
-        }
-    }
-    return !self.isHandling;
+- (void)webView:(WKWebView *)webView decidePolicyForNavigationAction:(WKNavigationAction *)navigationAction decisionHandler:(void (^)(WKNavigationActionPolicy))decisionHandler {
+  NSString *url = navigationAction.request.URL.absoluteString;
+  
+  //prevent loading URL if it is the redirectURL
+  self.handling = [url hasPrefix:self.serviceManager.settings.applicationWithRedirectURL];
+  
+  if (self.isHandling) {
+      if ([url rangeOfString:@"error"].location != NSNotFound) {
+          BOOL accessDenied = [url rangeOfString:@"the+user+denied+your+request"].location != NSNotFound;
+          if (accessDenied) {
+              if (self.authorizationCodeCancelCallback) {
+                  self.authorizationCodeCancelCallback();
+              }
+          } else {
+              NSError *error = [[NSError alloc] initWithDomain:linkedinIosHelperDomain
+                                                          code:1
+                                                      userInfo:[[NSMutableDictionary alloc] init]];
+              if (self.authorizationCodeFailureCallback) {
+                  self.authorizationCodeFailureCallback(error);
+              }
+          }
+      } else {
+          NSString *receivedState = [self extractGetParameter:@"state" fromURLString: url];
+          
+          //assert that the state is as we expected it to be
+          if ([self.serviceManager.settings.state isEqualToString:receivedState]) {
+              
+              //extract the code from the url
+              NSString *authorizationCode = [self extractGetParameter:@"code" fromURLString: url];
+              if (self.authorizationCodeSuccessCallback) {
+                  self.authorizationCodeSuccessCallback(authorizationCode);
+              }
+          } else {
+              NSError *error = [[NSError alloc] initWithDomain:linkedinIosHelperDomain
+                                                          code:2
+                                                      userInfo:[[NSMutableDictionary alloc] init]];
+              if (self.authorizationCodeFailureCallback) {
+                  self.authorizationCodeFailureCallback(error);
+              }
+          }
+      }
+  }
+  if (!self.isHandling) {
+    decisionHandler(WKNavigationActionPolicyAllow);
+  } else {
+    decisionHandler(WKNavigationActionPolicyCancel);
+  }
 }
 
-- (void)webView:(UIWebView *)webView didFailLoadWithError:(NSError *)error {
-    
-    if (!self.isHandling && self.authorizationCodeFailureCallback) {
-        self.authorizationCodeFailureCallback(error);
-    }
+- (void)webView:(WKWebView *)webView didFailNavigation:(WKNavigation *)navigation withError:(NSError *)error {
+  if (!self.isHandling && self.authorizationCodeFailureCallback) {
+      self.authorizationCodeFailureCallback(error);
+  }
 }
 
-- (void)webViewDidFinishLoad:(UIWebView *)webView {
-    
-    [self stopIndicatorIfExist];
-    
-    /*fix for the LinkedIn Auth window - it doesn't scale right when placed into
-     a webview inside of a form sheet modal. If we transform the HTML of the page
-     a bit, and fix the viewport to 540px (the width of the form sheet), the problem
-     is solved.
-     */
-    if([[UIDevice currentDevice] userInterfaceIdiom] == UIUserInterfaceIdiomPad) {
-        NSString* js =
-        @"var meta = document.createElement('meta'); "
-        @"meta.setAttribute( 'name', 'viewport' ); "
-        @"meta.setAttribute( 'content', 'width = 540px, initial-scale = 1.0, user-scalable = yes' ); "
-        @"document.getElementsByTagName('head')[0].appendChild(meta)";
-        
-        [webView stringByEvaluatingJavaScriptFromString:js];
-    }
+- (void)webView:(WKWebView *)webView didFinishNavigation:(WKNavigation *)navigation {
+  [self stopIndicatorIfExist];
+  
+  /*fix for the LinkedIn Auth window - it doesn't scale right when placed into
+   a webview inside of a form sheet modal. If we transform the HTML of the page
+   a bit, and fix the viewport to 540px (the width of the form sheet), the problem
+   is solved.
+   */
+  if([[UIDevice currentDevice] userInterfaceIdiom] == UIUserInterfaceIdiomPad) {
+      NSString* js =
+      @"var meta = document.createElement('meta'); "
+      @"meta.setAttribute( 'name', 'viewport' ); "
+      @"meta.setAttribute( 'content', 'width = 540px, initial-scale = 1.0, user-scalable = yes' ); "
+      @"document.getElementsByTagName('head')[0].appendChild(meta)";
+      
+      [webView evaluateJavaScript:js completionHandler:nil];
+  }
 }
 
 #pragma mark - Helpers -
@@ -208,7 +210,7 @@ NSString * const linkedinIosHelperDomain = @"com.linkedinioshelper";
 }
 
 - (void)dealloc {
-    self.webView.delegate = nil;
+    self.webView.navigationDelegate = nil;
 }
 
 @end
