@@ -1,0 +1,6 @@
+framework module LinkedinIOSHelper {
+  umbrella header "LinkedinIOSHelper-umbrella.h"
+
+  export *
+  module * { export * }
+}
